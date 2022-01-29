@@ -18,6 +18,14 @@ auto_voice_on('Chen Gaotian', 1)
 set_auto_voice_delay(2)
 |>
 Wang Ergong: Дарова!
+@<|
+branch {
+    { dest = 'sec1', text = 'knock on sisters door'},
+    { dest = 'test_branch_1', text = 'Go to New Years shrine'},
+}
+|>
+
+@<| label 'test_branch_1' |>
 
 President Ninomiya rarely frowned her delicate brows.
 

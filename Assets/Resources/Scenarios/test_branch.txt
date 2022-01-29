@@ -1,6 +1,6 @@
 @<|
 label 'test_branch'
--- is_unlocked_start()
+is_unlocked_start()
 |>
 <|
 show(bg, 'rain')
@@ -13,8 +13,8 @@ test options
 choose one
 @<|
 branch {
-    { dest = 'test_branch_1', text = 'knock on sister's door'},
-    { dest = 'test_branch_2', text = 'Go to New Year's shrine'},
+    { dest = 'test_branch_1', text = 'knock on sisters door'},
+    { dest = 'test_branch_2', text = 'Go to New Years shrine'},
     { dest = 'test_branch_3', text = 'Take Elijah away'},
 }
 |>

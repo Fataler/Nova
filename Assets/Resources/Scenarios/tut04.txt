@@ -79,7 +79,7 @@ set_box('hide')
 <|
 set_box()
 |>
-`set_box('hide')` can hide the dialog box, which is actually moving the position of the dialog box outside the screen
+`set_box(\'hide\')\` can hide the dialog box, which is actually moving the position of the dialog box outside the screen
 
 All parameters of `set_box()` are default values, which is to set the dialog box to the default position and style
 

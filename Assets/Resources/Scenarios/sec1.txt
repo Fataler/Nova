@@ -1,0 +1,15 @@
+﻿@<|
+label('sec1', 'Sec 1')
+is_start()
+|>
+<|
+stop(bgm)
+set_box()
+|>
+<|
+show(bg, 'rain')
+|>
+
+А вот и sec
+
+@<| jump_to 'ch2' |>

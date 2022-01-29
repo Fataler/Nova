@@ -1,6 +1,6 @@
 @<|
 label 'test_minigame'
--- is_unlocked_start()
+is_unlocked_start()
 |>
 <|
 show(bg, 'rain')
@@ -22,22 +22,22 @@ hide prefab
 an option first
 @<|
 branch {
-    { dest = 'test_minigame_1', text = 'knock on sister's door'},
-    { dest = 'test_minigame_2', text = 'Go to New Year's shrine'},
+    { dest = 'test_minigame_1', text = 'knock on sister\'s door'},
+    { dest = 'test_minigame_2', text = 'Go to New Year\'s shrine'},
     { dest = 'test_minigame_3', text = 'Take away Illya'},
 }
 |>
 
 @<| label 'test_minigame_1' |>
 <|
-v_choice = 'knock on sister's door'
+v_choice = 'knock on sister\'s door'
 |>
 You chose: knock on sister's door
 @<| jump_to 'test_minigame_end_choice' |>
 
 @<| label 'test_minigame_2' |>
 <|
-v_choice = 'Go to New Year's shrine'
+v_choice = 'Go to New Year\'s shrine'
 |>
 You chose: go to New Year's shrine
 @<| jump_to 'test_minigame_end_choice' |>
