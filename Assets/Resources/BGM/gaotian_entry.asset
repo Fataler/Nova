@@ -16,7 +16,7 @@ MonoBehaviour:
   displayNames:
   - locale: 40
     value: "A\u5C0F\u8C03\u534E\u5C14\u5179"
-  - locale: 10
+  - locale: 30
     value: Waltz in A Minor
   resourcePath: BGM/gaotian
   loopBeginSample: 0

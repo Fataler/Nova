@@ -16,7 +16,7 @@ MonoBehaviour:
   displayNames:
   - locale: 40
     value: "\u964DE\u5927\u8C03\u591C\u66F2"
-  - locale: 10
+  - locale: 30
     value: Nocturne in E-flat Major
   resourcePath: BGM/xiben
   loopBeginSample: 0

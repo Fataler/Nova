@@ -16,7 +16,7 @@ MonoBehaviour:
   displayNames:
   - locale: 40
     value: still
-  - locale: 10
+  - locale: 30
     value: still
   resourcePath: BGM/final
   loopBeginSample: 0
