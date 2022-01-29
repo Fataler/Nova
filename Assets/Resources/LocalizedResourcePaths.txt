@@ -1,5 +1,0 @@
-LocalizedResources/English/Backgrounds/staff
-LocalizedResources/English/Scenarios/ch1
-LocalizedResources/English/Scenarios/ch2
-LocalizedResources/English/Scenarios/ch3
-LocalizedResources/English/Scenarios/ch4

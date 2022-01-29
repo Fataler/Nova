@@ -87,7 +87,7 @@ namespace Nova
                 inputMappingController.ResetDefault();
                 configManager.Apply();
                 inputMappingController.Apply();
-                I18n.CurrentLocale = Application.systemLanguage;
+                I18n.CurrentLocale = SystemLanguage.Russian; //Application.systemLanguage;
             });
         }
 

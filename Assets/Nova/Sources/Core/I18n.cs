@@ -24,12 +24,12 @@ namespace Nova
         public const string LocalizedResourcesPath = "LocalizedResources/";
         public const string LocalizedStringsPath = "LocalizedStrings/";
 
-        public static readonly SystemLanguage[] SupportedLocales =
-            {SystemLanguage.ChineseSimplified, SystemLanguage.English};
+        public static readonly SystemLanguage[] SupportedLocales = {SystemLanguage.Russian};
+            //{SystemLanguage.Russian, SystemLanguage.English}; //
 
         public static SystemLanguage DefaultLocale => SupportedLocales[0];
 
-        private static SystemLanguage _currentLocale = FallbackLocale(Application.systemLanguage);
+        private static SystemLanguage _currentLocale = SystemLanguage.Russian;//FallbackLocale(Application.systemLanguage);
 
         public static SystemLanguage CurrentLocale
         {
@@ -54,10 +54,12 @@ namespace Nova
             {
                 return SystemLanguage.ChineseSimplified;
             }
-            else
+            else if (locale == SystemLanguage.English)
             {
                 return SystemLanguage.English;
             }
+
+            return SystemLanguage.Russian;
         }
 
         public static readonly UnityEvent LocaleChanged = new UnityEvent();

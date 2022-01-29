@@ -1,6 +1,6 @@
 {
     "Language": {
-        "defaultValue": -1
+        "defaultValue": 30
     },
     "FontSize": {
         "min": 30,
