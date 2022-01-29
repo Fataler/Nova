@@ -7,7 +7,7 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试空节点
+test empty node
 @<|
 jump_to 'test_empty_node_1'
 |>
@@ -21,7 +21,7 @@ jump_to 'test_empty_node_1'
 222
 
 <|
--- 空的文本
+-- empty text
 |>
 
 333
@@ -32,11 +32,11 @@ jump_to 'test_empty_node_1'
 @<| label 'test_empty_node_3' |>
 @<|
 branch {
-    { dest = 'test_empty_node_end', text = '结束'},
-    { dest = 'test_empty_node_3', text = '不结束' },
+     { dest = 'test_empty_node_end', text = 'end'},
+     { dest = 'test_empty_node_3', text = 'not ending' },
 }
 |>
 
 @<| label 'test_empty_node_end' |>
-测试结束
+end of test
 @<| is_end() |>

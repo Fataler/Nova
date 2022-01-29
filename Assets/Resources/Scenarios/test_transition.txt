@@ -8,7 +8,7 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试转场
+test transition
 
 <|
 anim:trans(cam, function()
@@ -17,8 +17,8 @@ anim:trans(cam, function()
         show(bg, 'room')
     end, 'fade', 1, { _Mask = 'Masks/eye' })
 |>
-第一类转场
-前一幅画面渐变到后一幅画面
+first class transition
+The previous picture fades to the next picture
 
 <|
 anim:trans2(cam, function()
@@ -27,18 +27,18 @@ anim:trans2(cam, function()
         show(bg, 'rain')
     end, 'broken_tv', 1)
 |>
-第二类转场
-先让前一幅画面消失，再让后一幅画面出现
+The second type of transition
+Let the previous picture disappear first, and then let the next picture appear
 
 <|
 anim:vfx(cam, 'color', {0, 1}, 1, { _ColorMul = 0 })
 |>
-用两句话完成的转场
-先让画面变黑
+A transition completed in two sentences
+Make the screen black
 
 <|
--- 不在trans里的时候，角色的show和hide默认有零点几秒的淡入淡出动画
--- 现在我们不需要这个动画，就要用auto_fade_off()和auto_fade_on()
+-- When not in trans, the character's show and hide have a fade-in and fade-out animation of a few tenths of a second by default
+-- now we don't need this animation, we will use auto_fade_off() and auto_fade_on()
 auto_fade_off()
 hide(xiben)
 show(gaotian, 'normal', pos_r)
@@ -46,34 +46,34 @@ show(bg, 'room')
 auto_fade_on()
 anim:vfx(cam, 'color', {1, 0}, 1, { _ColorMul = 0 })
 |>
-再让画面出现
+let the screen appear
 
 <|
 anim:vfx(bg, 'mix_add', {0, 1}, 1, { _Mask = 'Masks/vertical' })
 |>
-给背景加特效
+Add special effects to the background
 
-背景特效持续
+Background effects persist
 
 <|
 anim:vfx(bg, 'mix_add', {1, 0}, 1, { _Mask = 'Masks/vertical' })
 |>
-背景特效结束
+End of background effects
 
 <|
 anim:vfx(cam, 'lens_blur', {0, 1}, 1, { _Size = 4 })
 |>
-给摄像机加特效
+Add special effects to the camera
 
-摄像机特效持续
+Camera effects persist
 
 <|
 anim:vfx(cam, 'lens_blur', {1, 0}, 1, { _Size = 4 })
 |>
-摄像机特效结束
+Camera effect ends
 
 <|
--- 先把gaotian和fg的layer设为cam_mask.maskLayer，再给cam_mask加vfx
+-- First set the layers of gaotian and fg to cam_mask.maskLayer, then add vfx to cam_mask
 gaotian.layer = cam_mask.maskLayer
 fg.layer = cam_mask.maskLayer
 show(xiben, 'normal', pos_l)
@@ -82,27 +82,27 @@ show(gaotian, 'normal', pos_r)
 show(fg, 'moon_halo')
 anim:vfx(cam_mask, 'fade', {0, 0.5}, 1, { _Mask = 'Masks/wipe_left', _Vague = 0.1 })
 |>
-测试遮罩
+test mask
 
 <|
--- 把gaotian和fg的layer重置为0，并把cam2的cullingMask设为1，就是拍摄layer 0
+-- Reset the layers of gaotian and fg to 0, and set the cullingMask of cam2 to 1, which is to shoot layer 0
 gaotian.layer = 0
 fg.layer = 0
 cam2.cullingMask = 1
 hide(fg)
 anim:move(cam2, {-3, 0})
 |>
-也可以让两个摄像机拍同一个图层
+It is also possible to have two cameras capture the same layer
 
 <|
 anim:vfx(cam_mask, 'fade', {0.5, 0}, 1, { _Mask = 'Masks/wipe_left', _Vague = 0.1 })
 |>
-遮罩结束
+end of mask
 
 <|
 cam2.cullingMask = 2^cam_mask.maskLayer
 |>
-重置cam2的cullingMask
+reset cullingMask of cam2
 
-测试结束
+end of test
 @<| is_end() |>

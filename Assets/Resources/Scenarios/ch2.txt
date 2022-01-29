@@ -1,5 +1,5 @@
 @<|
-label('ch2', '第二章')
+label('ch2', 'Chapter 2')
 is_start()
 |>
 <|
@@ -8,16 +8,16 @@ anim:trans_fade(cam, function()
     end, 2)
 play(bgm, 'qianye')
 box_hide_show(2)
-auto_voice_off('王二宫')
-auto_voice_on('张浅野', 4)
-auto_voice_off('孙西本')
-auto_voice_off('陈高天')
+auto_voice_off('Wang Er Gong')
+auto_voice_on('Zhang Qianye', 4)
+auto_voice_off('Sun Xiben')
+auto_voice_off('Chen Gaotian')
 |>
-李竹内：：“这回又是什么事？”
+Li Zhunei: "What's going on this time?"
 
-我站在厕所的镜子前，镜中人脸上挂着的墨镜令人压抑。
+I was standing in front of the mirror in the toilet, and the sunglasses on the face of the person in the mirror were depressing.
 
-洗手池的水龙头开着，花花的水声几乎要淹没我的声音。
+The sink faucet was on, and the sound of the flowers almost drowned out my voice.
 
 <|
 show(qianye, 'normal', pos_c, 0)
@@ -25,83 +25,83 @@ anim:cam_punch()
 anim:vfx(cam, 'mono', {0, 0.9}, 0.3)
 sound('flap', 0.5)
 |>
-那个人摘下了我的墨镜。
+The man took off my sunglasses.
 
-失去墨镜的我因为灯光而觉得头晕目眩。
+I lost my sunglasses and felt dizzy because of the lights.
 
-？？？//张浅野：：“时机到了。”
+? ? ? //Zhang Qianye: "The time has come."
 
-李竹内：：“……”
+Li Zhunei: "..."
 
-？？？：：“你还没有理解么？这是我好不容易创造的绝好条件！”
+? ? ? : "Don't you understand yet? This is the perfect condition that I finally created!"
 
-他的脸变得狰狞。
+His face became hideous.
 
-？？？：：“北条先生等不及了。我们把你送到这儿不是让你谈恋爱的。”
+? ? ? : "Mr. Hojo can't wait. We didn't send you here to let you fall in love."
 
-李竹内：：“我至今也不明白，为什么一个父亲要杀死自己的女儿。”
+Li Zhunei: "I still don't understand why a father would kill his daughter."
 
-？？？：：“因为那是他的私生女，而大选就要到了，已经有一个竞选人开始从这方面找麻烦了。”
+? ? ? : "Because that is his illegitimate daughter, and the general election is coming, a candidate has already started to make trouble in this regard."
 
-那个人像是无聊似的耸了耸肩。
+The man shrugged as if bored.
 
-这是他特有的习惯。
+This is his peculiar habit.
 
-？？？：：“哼，算了，这些政治上的事，说了你这个白痴也听不懂。”
+? ? ? : "Hmph, forget it, you idiot can't understand these political matters."
 
-在失去了墨镜之后，我的眼睛好不容易适应了光线。
+After losing my sunglasses, my eyes finally got used to the light.
 
-我看到一个玻璃小瓶静静地摆在洗手台边。
+I saw a glass vial sitting quietly beside the sink.
 
-？？？：：“加到她的奶茶里，手脚利索点。这种无色无味的毒药说不定比你还贵。”
+? ? ? :: "Add it to her milk tea and make it easier. This colorless and odorless poison might be more expensive than you."
 
-我没有说话，也没有去拿那个小瓶，只是凝视着它。
+I didn't speak or go for the vial, just stared at it.
 
-好像在凝视着什么奇妙之物。
+As if staring at something wonderful.
 
-他的脸色变了，用我墨镜的镜框敲打着我的脸颊。
+His face changed and he tapped my cheek with the frames of my sunglasses.
 
-厕所里响起的干巴巴的啪嗒声，和哗哗的水声交织在一起。
+The dry clatter from the toilet was intertwined with the rushing sound of water.
 
-？？？：：“别忘了北条先生花了多少钱治你的眼睛。”
+? ? ? :: "Don't forget how much Mr. Hojo spent to treat your eyes."
 
-？？？：：“而你的母亲现在又躺在谁开的医院里。”
+? ? ? : "And your mother is now lying in the hospital run by someone."
 
 <|
 anim:cam_punch()
 anim:vfx(cam, 'mono', {0.9, 0}, 0.3)
 sound('flap', 0.5)
 |>
-我取过小瓶，紧接着从他手中夺回墨镜。
+I took the vial and took the sunglasses back from him.
 
-李竹内：：“抱歉，刚才没看清楚。”
+Li Zhunei: "Sorry, I didn't see it clearly just now."
 
-李竹内：：“你知道的，我眼睛不太好。”
+Li Zhunei: "You know, my eyes are not very good."
 
-？？？：：“哼，蠢货。”
+? ? ? :: "Huh, idiot."
 
 <|
 hide(qianye)
 tint(qianye, 1)
 |>
-在我离开厕所的时候，那个人依旧对着我的背影骂着。
+When I left the toilet, the man was still scolding at my back.
 
-？？？：：“别搞砸了！小心那个会长，她可能是另一边派来的人……”
+? ? ? :: "Don't screw it up! Be careful with that president, she might be someone sent from the other side..."
 
 <|
 anim:trans_fade(bg, 'black')
-anim:fade_out(bgm, 2)
+anim: fade_out(bgm, 2)
 anim:fade_in(bgs, 'rain')
 |>
-最后，一切声音都被掩盖在了哗哗的流水声下。
+In the end, all sounds were covered under the sound of rushing water.
 
 <|
-anim:fade_out(bgs)
+anim: fade_out(bgs)
 |>
-接下来我要去……
+I'm going next...
 @<|
 branch {
-    { dest = 'ch3', text = '走廊' },
-    { dest = 'ch4', text = '学生会室' },
+    { dest = 'ch3', text = 'corridor' },
+    { dest = 'ch4', text = 'Student Union Room' },
 }
 |>

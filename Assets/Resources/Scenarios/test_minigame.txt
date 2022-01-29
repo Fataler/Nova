@@ -7,60 +7,60 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试小游戏
+test mini game
 
 <|
 show(__Nova.prefabLoader, 'ExampleCube')
 |>
-显示普通的prefab
+show normal prefab
 
 <|
 hide(__Nova.prefabLoader)
 |>
-隐藏prefab
+hide prefab
 
-先来一个选项
+an option first
 @<|
 branch {
-    { dest = 'test_minigame_1', text = '敲妹妹的门'},
-    { dest = 'test_minigame_2', text = '去新年参拜'},
-    { dest = 'test_minigame_3', text = '带走伊莉雅'},
+    { dest = 'test_minigame_1', text = 'knock on sister's door'},
+    { dest = 'test_minigame_2', text = 'Go to New Year's shrine'},
+    { dest = 'test_minigame_3', text = 'Take away Illya'},
 }
 |>
 
 @<| label 'test_minigame_1' |>
 <|
-v_choice = '敲妹妹的门'
+v_choice = 'knock on sister's door'
 |>
-你选了：敲妹妹的门
+You chose: knock on sister's door
 @<| jump_to 'test_minigame_end_choice' |>
 
 @<| label 'test_minigame_2' |>
 <|
-v_choice = '去新年参拜'
+v_choice = 'Go to New Year's shrine'
 |>
-你选了：去新年参拜
+You chose: go to New Year's shrine
 @<| jump_to 'test_minigame_end_choice' |>
 
 @<| label 'test_minigame_3' |>
 <|
-v_choice = '带走伊莉雅'
+v_choice = 'Take Ilya away'
 |>
-你选了：带走伊莉雅
+You chose: Take Ilya
 @<| jump_to 'test_minigame_end_choice' |>
 
 @<| label 'test_minigame_end_choice' |>
-接下来显示小游戏
+Next show mini-games
 
 <|
 minigame(__Nova.uiPrefabLoader, 'ExampleMinigame')
 |>
-小游戏结束
+mini game over
 
 <|
 print(v_minigame_text)
 |>
-刚才输入的文本会在Console窗口中显示
+The text you just entered will be displayed in the Console window
 
-测试结束
+end of test
 @<| is_end() |>

@@ -7,14 +7,14 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试变量
+test variable
 
 <|
 v_test_bool = true
 v_test_number = 123
 v_test_string = 'abc'
 |>
-设置变量
+set variable
 
 <|
 print(v_test_bool)
@@ -22,7 +22,7 @@ print(v_test_number)
 print(v_test_string)
 print(__Nova.variables:ToString())
 |>
-读取变量
+read variable
 
-测试结束
+end of test
 @<| is_end() |>

@@ -7,9 +7,9 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试对话框
+test dialog
 
-很多行文字
+many lines of text
 111
 222
 333
@@ -20,17 +20,17 @@ set_box()
 888
 999
 
-很长的文字
-一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零
+very long text
+12345678901234567890123456789012345678901234567890 12345678901234567890123456789012345678901234567890
 
-英文换行 abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg
+English newline abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg
 
 <|
 set_box('full', 'dark')
 |>
-全屏文本
+full screen text
 
-很多行文字
+many lines of text
 111
 222
 333
@@ -41,15 +41,15 @@ set_box('full', 'dark')
 888
 999
 
-很长的文字
-一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零一二三四五六七八九零
+very long text
+12345678901234567890123456789012345678901234567890 12345678901234567890123456789012345678901234567890
 
-英文换行 abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg
+English newline abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg
 
 <|
 set_box()
 |>
-取消全屏文本
+Cancel full screen text
 
-测试结束
+end of test
 @<| is_end() |>

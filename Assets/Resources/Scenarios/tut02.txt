@@ -1,229 +1,229 @@
 @<|
-label('tut02', '教程2 图像')
+label('tut02', 'Tutorial 2 image')
 is_start()
 |>
 <|
 stop(bgm)
 set_box()
 |>
-教程2 图像
+Tutorial 2 images
 
 <|
 show(bg, 'rain')
 |>
-`show`函数用来显示图片
+The `show` function is used to display the picture
 
-`bg`是图片的controller在Lua中的名称
+`bg` is the name of the image's controller in Lua
 
-在Unity Editor的Hierarchy窗口里选中`Sprites/BackgroundImage`，在Inspector窗口的`SpriteController`里就能看到`luaGlobalName`是`bg`
+In the Hierarchy window of the Unity Editor, select `Sprites/BackgroundImage`, and in the `SpriteController` of the Inspector window, you can see that `luaGlobalName` is `bg`
 
-图片所在的文件夹由`SpriteController`的`imageFolder`设置
+The folder where the image is located is set by the `imageFolder` of the `SpriteController`
 
-`rain`是这个文件夹中的图片文件名（这里不需要`.png`等后缀名）
+`rain` is the image file name in this folder (no suffix such as `.png` is needed here)
 
-顺便说一句：：把图片素材导入到Nova的方法详见[Wiki：背景图片导入](https://github.com/Lunatic-Works/Nova/wiki/Image-Import)
+By the way: For the method of importing image material into Nova, see [Wiki: Importing Background Image](https://github.com/Lunatic-Works/Nova/wiki/Image-Import)
 
 <|
 show(fg, 'moon_halo', {2, 2, 0.5})
 |>
-可以同时显示多个图层，每个图层由一个game object控制。上面的`fg`对应的就是Hierarchy里的`ForegroundImage`
+Multiple layers can be displayed at the same time, and each layer is controlled by a game object. The `fg` above corresponds to the `ForegroundImage` in Hierarchy
 
-如果需要更多图层，可以在Unity Editor中复制更多的game object，并修改`luaGlobalName`
+If you need more layers, you can copy more game objects in the Unity Editor and modify `luaGlobalName`
 
-顺便说一句：：图层的顺序一般由z坐标决定。上面的`{2, 2}`是x、y坐标，马上就会讲到
+BTW: The order of layers is generally determined by the z coordinate. The `{2, 2}` above are the x and y coordinates, which will be discussed shortly
 
 <|
 show(bg, 'room')
 |>
-对同一个图层再次使用`show`，则会替换当前的图片
+Using `show` again on the same layer will replace the current image
 
-Inspector中的`SpriteRenderer`的`sprite`会显示这个图层当前的图片
+The `sprite` of `SpriteRenderer` in the Inspector will display the current image of this layer
 
 <|
 hide(fg)
 |>
-`hide`函数用来隐藏图片
+The `hide` function is used to hide the image
 
 <|
 move(bg, {1, 0})
 |>
-`move`函数用来移动图片
+The `move` function is used to move the image
 
-`{1, 0}`是图片的x、y坐标，可以在Inspector中的`Transform`里看到
+`{1, 0}` is the x and y coordinates of the image, which can be seen in the `Transform` in the Inspector
 
 <|
 move(bg, {0, 1, 2})
 |>
-如果有第三个参数，则是缩放的倍数
+If there is a third parameter, the scaling factor
 
-Lua中的参数必须先省略前面的，再省略后面的。想要只省略前面的参数，可以用`nil`
+Parameters in Lua must first omit the former, and then omit the latter. To omit only the preceding arguments, use `nil`
 
 <|
 move(bg, {nil, -2, 0.5})
 |>
-`move`遇到省略的参数时，会保持之前的值。利用这一点可以避免把同一个坐标输很多遍，以至于修改的时候也要改很多遍
+When `move` encounters an omitted parameter, the previous value is kept. Taking advantage of this can avoid losing the same coordinate many times, so that it needs to be changed many times when modifying
 
 <|
 move(bg, {nil, nil, {0.5, 2}})
 |>
-如果第三个参数是一个table，则会分别设置x、y方向的缩放（如果是三维模型，还可以设置z方向的缩放）
+If the third parameter is a table, it will set the scaling in the x and y directions respectively (if it is a 3D model, you can also set the scaling in the z direction)
 
 <|
 move(bg, {0, 0, 1, 11, 30})
 |>
-顺便说一句：：如果还有第四、第五个参数，则是z坐标和绕z轴的旋转角度
+By the way: if there is a fourth and fifth parameter, it is the z coordinate and the rotation angle around the z axis
 
 <|
 move(bg, {nil, nil, nil, nil, {60, 40, 20}})
 |>
-顺便说一句：：如果第五个参数是一个table，则会分别设置绕x、y、z轴的旋转
+By the way: if the fifth parameter is a table, it will set the rotation around the x, y, z axes respectively
 
-顺便说一句：：为了方便只有二维演出的作品，Nova脚本中的坐标的前三个参数是x、y、缩放，而不是x、y、z
+BTW: To facilitate works with only 2D performances, the first three parameters for coordinates in Nova scripts are x, y, scaling, not x, y, z
 
-顺便说一句：：摄像机的模式默认是orthographic，这时z坐标不会影响图片显示的大小，只会影响图层顺序
+By the way: The camera's mode is orthographic by default. At this time, the z-coordinate will not affect the size of the image display, but only affect the layer order.
 
-顺便说一句：：如果需要做三维演出，你可以把摄像机改成perspective，这时z坐标就会影响图片显示的大小
+By the way: If you need to do 3D performances, you can change the camera to perspective, then the z coordinate will affect the size of the picture displayed
 
-顺便说一句：：Unity的渲染顺序也不完全是由z坐标决定的，如果要仔细调整的话可以用render queue，这个以后再讲。。
+By the way: The rendering order of Unity is not completely determined by the z coordinate. If you want to adjust it carefully, you can use the render queue, which will be discussed later. .
 
 <|
 move(bg, {0, 0, 1, 10, 0})
 show(fg, 'moon_halo')
 |>
-好了，把背景恢复正常，并且把`fg`显示出来
+Ok, put the background back to normal and show `fg`
 
 <|
 tint(fg, {1, 0.5, 0})
 |>
-`tint`函数用来改变图片的颜色
+The `tint` function is used to change the color of an image
 
-原理是给图片的RGBA通道分别乘上一个0..1之间的系数，可以在Inspector中的`SpriteRenderer`的`color`里看到
+The principle is to multiply the RGBA channel of the picture by a coefficient between 0..1, which can be seen in the `color` of `SpriteRenderer` in the Inspector
 
-顺便说一句：：乘上系数会让RGBA的数值变小，图片变暗，所以准备美术素材的时候可以画得亮一点
+By the way: Multiplying the coefficient will make the value of RGBA smaller and the picture darker, so you can draw a little brighter when preparing art materials
 
-Nova脚本中的颜色用一个table表示，可以包括1..4个数值
+The color in Nova script is represented by a table, which can include 1..4 values
 
 <|
 tint(fg, 0.5)
 |>
-1个数值：`r, g, b`均为该值，`a`为1，只改变明暗而不改变色调（这时可以不用table，只用一个数值）
+1 value: `r, g, b` are all this value, `a` is 1, only change the light and shade without changing the hue (in this case, you can use only one value instead of table)
 
 <|
 tint(fg, {1, 0.5})
 |>
-2个数值：`r, g, b`均为第一个值，`a`为第二个值
+2 values: `r, g, b` are the first value, `a` is the second value
 
 <|
 tint(fg, {0, 0.5, 1})
 |>
-3个数值：`r, g, b`为这三个数值，`a`为1
+3 values: `r, g, b` are these three values, `a` is 1
 
 <|
 tint(fg, {0.5, 0, 1, 0.5})
 |>
-4个数值：`r, g, b, a`为这四个数值
+4 values: `r, g, b, a` are these four values
 
 <|
 hide(fg)
 move(fg, {0, 0, 1})
 tint(fg, 1)
 |>
-好了，隐藏`fg`。如果接下来长时间用不到一个图层，最好把坐标和颜色恢复原状，以免下次用到的时候忘了
+Well, hide `fg`. If you will not use a layer for a long time, it is best to restore the coordinates and color to the original state, so as not to forget it the next time you use it
 
 <|
 show(bg, 'rain', {1, 1}, {1, 0.5, 0})
 |>
-坐标和颜色也可以在`show`当中设置
+Coordinates and colors can also be set in `show`
 
 <|
 show(bg, 'room', nil, {0, 0.5, 1})
 |>
-如果省略则是保持之前的值
+If omitted, it will keep the previous value
 
 <|
 show(bg, 'rain', {0, 0}, 1)
 |>
-好了，把背景恢复正常
+ok, put the background back to normal
 
 <|
 show(gaotian, 'normal', {0, -0.3, 0.4})
 |>
-`show`也可以显示角色立绘，`gaotian`对应的就是Hierarchy里的`Characters/Gaotian`
+`show` can also display character portraits, `gaotian` corresponds to `Characters/Gaotian` in Hierarchy
 
-角色立绘通常是由几个部件组合而成的，称为一个pose，上面的`normal`是pose的名称
+The character portrait is usually composed of several parts, called a pose, and the `normal` above is the name of the pose
 
-所有角色的pose在`pose.lua`中定义
+The poses for all roles are defined in `pose.lua`
 
-顺便说一句：：把立绘素材导入到Nova的方法详见[Wiki：立绘导入](https://github.com/Lunatic-Works/Nova/wiki/Standing-Import)
+By the way: For the method of importing vertical drawing materials into Nova, see [Wiki: Vertical Drawing Import](https://github.com/Lunatic-Works/Nova/wiki/Standing-Import)
 
 <|
 show(gaotian, 'cry')
 |>
-改变一下立绘的表情
+Change your face
 
 <|
 show(gaotian, 'normal')
 |>
-立绘改变的时候默认有零点几秒的淡入淡出
+When the vertical drawing changes, there is a fade in and out of a few tenths of a second by default.
 
-顺便说一句：：教程5会讲更复杂的动画
+BTW:: Tutorial 5 will talk about more complex animations
 
 <|
 move(gaotian, {-4, nil})
 |>
-`move`也可以移动立绘
+`move` can also move the vertical drawing
 
 <|
 move(gaotian, pos_r)
 |>
-可以把`move`用到的坐标定义成一个变量`pos_r`，避免把同一个坐标输很多遍。这样的变量一般在`animation_presets.lua`中定义
+You can define the coordinates used by `move` as a variable `pos_r` to avoid entering the same coordinates many times. Such variables are generally defined in `animation_presets.lua`
 
 <|
 tint(gaotian, {0.5, 1, 0.5})
 |>
-`tint`也可以改变立绘的颜色
+`tint` can also change the color of the vertical drawing
 
 <|
 env_tint(gaotian, color_sunset)
 tint(gaotian, 1)
 |>
-还有一个函数`env_tint`，也用来改变立绘的颜色（不能用在普通图片上面）。这里的`color_sunset`也是定义在`animation_presets.lua`中的变量
+There is also a function `env_tint`, which is also used to change the color of the vertical drawing (cannot be used on normal pictures). Here `color_sunset` is also a variable defined in `animation_presets.lua`
 
 <|
 tint(gaotian, 0.5)
 |>
-`env_tint`与`tint`的效果可以叠加。`env_tint`一般用于黄昏、夜晚等环境引起的长时间的颜色变化，`tint`则用于短时间的演出效果
+The effects of `env_tint` and `tint` can be stacked. `env_tint` is generally used for long-term color changes caused by dusk, night and other environments, and `tint` is used for short-term performance effects
 
 <|
 move(gaotian, pos_c)
 env_tint(gaotian, 1)
 tint(gaotian, 1)
 |>
-好了，恢复立绘的位置和颜色
+Ok, restore the position and color of the vertical painting
 
 <|
 move(cam, {1, 0})
 |>
-`move`还可以移动摄像机
+`move` also moves the camera
 
-顺便说一句：：目前我们用到的摄像机都是Hierarchy中的`MainCamera`，`MaskCamera`的用处以后再讲
+By the way: At present, the cameras we use are `MainCamera` in Hierarchy, the use of `MaskCamera` will be discussed later
 
-顺便说一句：：目前的摄像机模式是orthographic，所以立绘和背景看起来像一整张图片一样移动。如果把摄像机改成perspective，就会有三维视差的效果
+BTW: The current camera mode is orthographic, so the vertical drawing and background appear to move like a whole picture. If you change the camera to perspective, there will be a three-dimensional parallax effect
 
 <|
 move(cam, {1, 1, 6})
 |>
-注意，摄像机的坐标中的缩放参数控制的不是`Transform`中的`scale`，而是`Camera`中的`size`
+Note that the zoom parameter in the camera's coordinates does not control the `scale` in `Transform`, but the `size` in `Camera`
 
-顺便说一句：：如果摄像机的模式是perspective，缩放参数控制的则是`Camera.fieldOfView`
+BTW: If the camera mode is perspective, the zoom parameter is controlled by `Camera.fieldOfView`
 
 <|
 move(cam, {0, 0, 5})
 |>
-恢复摄像机位置
+restore camera position
 
 <|
 hide(gaotian)
 |>
-教程2 图像 到此结束
+Tutorial 2 Images This concludes
 @<| jump_to 'tut03' |>

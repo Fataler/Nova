@@ -7,7 +7,7 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试很多角色
+Test a lot of characters
 
 <|
 show(ergong, 'normal', {-6, 0, 0.4})
@@ -34,5 +34,5 @@ show(gaotian, 'cry')
 |>
 555
 
-测试结束
+end of test
 @<| is_end() |>

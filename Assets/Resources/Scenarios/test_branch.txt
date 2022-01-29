@@ -8,39 +8,39 @@ stop(bgm)
 set_box()
 v_flag = 0
 |>
-测试选项
+test options
 
-选一个吧
+choose one
 @<|
 branch {
-    { dest = 'test_branch_1', text = '敲妹妹的门'},
-    { dest = 'test_branch_2', text = '去新年参拜'},
-    { dest = 'test_branch_3', text = '带走伊莉雅'},
+    { dest = 'test_branch_1', text = 'knock on sister's door'},
+    { dest = 'test_branch_2', text = 'Go to New Year's shrine'},
+    { dest = 'test_branch_3', text = 'Take Elijah away'},
 }
 |>
 
 @<| label 'test_branch_1' |>
-你选了：敲妹妹的门
+You chose: knock on sister's door
 @<| jump_to 'test_branch_end_choice' |>
 
 @<| label 'test_branch_2' |>
-你选了：去新年参拜
+You chose: go to New Year's shrine
 @<| jump_to 'test_branch_end_choice' |>
 
 @<| label 'test_branch_3' |>
-你选了：带走伊莉雅
+You chose: Take Ilya
 @<| jump_to 'test_branch_end_choice' |>
 
 @<| label 'test_branch_end_choice' |>
-接下来测试剧本的循环
+Next test the loop of the script
 @<| jump_to 'test_branch_begin_loop' |>
 
 @<| label 'test_branch_begin_loop' |>
-要加一个flag吗
+Want to add a flag?
 @<|
 branch {
-    { dest = 'test_branch_add_flag', text = '加一个flag'},
-    { dest = 'test_branch_end_loop', text = '不加了'},
+    { dest = 'test_branch_add_flag', text = 'add a flag'},
+    { dest = 'test_branch_end_loop', text = 'not added'},
 }
 |>
 
@@ -49,22 +49,22 @@ branch {
 v_flag = v_flag + 1
 print(v_flag)
 |>
-加了一个flag
+added a flag
 @<| jump_to 'test_branch_begin_loop' |>
 
 @<| label 'test_branch_end_loop' |>
-如果flag > 3会直接跳到最后
+If flag > 3, it will skip directly to the end
 @<|
 branch {
-    { dest = 'test_branch_end', text = '普通的选项'},
-    { dest = 'test_branch_end', text = 'flag > 1才会出现', mode = 'show', cond = function()
+    { dest = 'test_branch_end', text = 'normal options'},
+    { dest = 'test_branch_end', text = 'flag > 1 will appear', mode = 'show', cond = function()
         return v_flag > 1
     end },
-    { dest = 'test_branch_end', text = 'flag < 2才能点击', mode = 'enable', cond = 'v_flag < 2' },
+    { dest = 'test_branch_end', text = 'flag < 2 to click', mode = 'enable', cond = 'v_flag < 2' },
     { dest = 'test_branch_end', mode = 'jump', cond = 'v_flag > 3' },
 }
 |>
 
 @<| label 'test_branch_end' |>
-测试结束
+end of test
 @<| is_end() |>

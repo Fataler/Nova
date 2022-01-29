@@ -1,118 +1,118 @@
 @<|
-label('tut01', '教程1 文字与脚本结构')
+label('tut01', 'Tutorial 1 Text and Script Structure')
 is_unlocked_start()
 |>
 <|
 stop(bgm)
 set_box()
 |>
-教程1 文字与脚本结构
+Tutorial 1 Text and Script Structure
 
-看这些教程的时候，最好把Unity里的运行情况与Scenarios文件夹里的脚本对照着看
+When watching these tutorials, it's best to compare what's running in Unity with the scripts in the Scenarios folder
 
-如果哪一步没有看清，可以随时在文本回顾界面中跳回到之前的位置
+If you don't see a step clearly, you can jump back to the previous position in the text review interface at any time
 
-写在这里的文字会在游戏里显示出来
+The text written here will be displayed in the game
 
-想要点击鼠标显示下一段文字，就要在两段文字之间空一行
+If you want to click the mouse to display the next paragraph of text, you need to leave a blank line between the two paragraphs of text
 
 
-多空几行也不是不行，但是会让脚本比较难看
+It's not impossible to add a few more lines, but it will make the script more ugly
 
-如果没有空行
-就会把两行文字一起显示出来
+if there are no blank lines
+will display the two lines of text together.
 
-想要在一起显示的文字当中加空行
+Add blank lines to the text you want to display together
 <noparse></noparse>
-可以用一个空的XML标记（教程4会详细讲XML标记）
+An empty XML tag can be used (tutorial 4 will cover XML tags in detail)
 
-王二宫：：两个中文冒号用来分隔说话人的名字和说话的内容
+Wang Er Gong: Two Chinese colons are used to separate the speaker's name and the content of the speech
 
-张浅野::也可以用两个英文冒号
+Zhang Qianye::You can also use two English colons
 
 <|
 print('111')
--- 这是Lua里的注释
+-- This is a comment in Lua
 |>
-在文字的上面可以用`<| ... |>`插入一个Lua代码块。上面的代码会在Unity Editor的Console窗口中输出“111”
+A block of Lua code can be inserted above the literal with `<| ... |>`. The above code will output "111" in the Console window of the Unity Editor
 
-顺便说一句：：上面的代码块与文字之间没有空行。如果有空行的话……
+BTW: There is no blank line between the above code block and the text. If there is a blank line...
 
 <|
 print('222')
 |>
 
-就是先点一下鼠标运行代码（同时对话框变成空的），再点一下鼠标显示文字
+It is to click the mouse to run the code (at the same time the dialog box becomes empty), and then click the mouse to display the text
 
-我们把两个空行之间的东西叫做一“条”对话（dialogue entry）。一条对话中可能有文本，也可能有代码
+We call something between two blank lines a "dialogue entry". A conversation may have text or code
 
-顺便说一句：：不管有没有角色在说话，我们都把它叫做一条“对话”
+BTW: We call it a "dialogue" with or without characters talking
 @<| jump_to 'tut01_2' |>
 
 @<|
 label 'tut01_2'
 |>
-一个游戏的脚本可以划分为许多个节点（node），每个节点里可以有许多条对话
+A game script can be divided into many nodes, and each node can have many dialogues
 
-每个节点的开头和结尾处各有一个提前代码块（eager execution block），语法为`@<| ... |>`
+There is an eager execution block at the beginning and end of each node with the syntax `@<| ... |>`
 
-顺便说一句：：一条对话中的代码块其实叫做延迟代码块（lazy execution block）。提前代码块在parse脚本时执行，延迟代码块则在游戏过程中执行
+BTW: A block of code in a conversation is actually called a lazy execution block. Advance code blocks are executed when the script is parsed, and delayed code blocks are executed during the game
 
-<noparse><</noparse><noparse>|</noparse>和<noparse>@<</noparse><noparse>|</noparse>不能出现在一行文本的开头
+<noparse><</noparse><noparse>|</noparse> and <noparse>@<</noparse><noparse>|</noparse> cannot appear at the beginning of a line of text
 
-一行文本的结尾不能出现<noparse>|</noparse><noparse>></noparse>
+<noparse>|</noparse><noparse>></noparse> cannot appear at the end of a line of text
 
-<noparse>：</noparse><noparse>：</noparse>和<noparse>:</noparse><noparse>:</noparse>不能出现在文本中
+<noparse>:</noparse><noparse>:</noparse> and <noparse>:</noparse><noparse>:</noparse> cannot appear in the text
 
-它们都是Nova脚本的保留字，如果一定要出现，可以用XML标记把它们拆开（因为Nova先来parse这些保留字，TextMeshPro再来parse XML）
+They are all reserved words of Nova scripts. If they must appear, they can be separated with XML tags (because Nova parses these reserved words first, and TextMeshPro parses XML later)
 
-节点开头的提前代码块当中必须有一个`label`函数，定义这个节点的名称
+There must be a `label` function in the early code block at the beginning of the node, which defines the name of the node
 
-比如我们现在所在的节点的名称是`tut01_2`，上面那个节点的名称则是`tut01`
+For example, the name of the node we are currently in is `tut01_2`, and the name of the node above is `tut01`
 
-这里的“名称”是给程序内部使用的。我们还可以定义一个“显示名称”，在存档界面等地方显示给玩家看
+The "name" here is for internal use by the program. We can also define a "display name", which is displayed to players in the save interface and other places
 
-比如上面那个节点的开头有`label('tut01', '教程1 文字与脚本结构')`，所以名称是`tut01`，显示名称则是“教程1 文字与脚本结构”
+For example, the beginning of the node above has `label('tut01', 'Tutorial 1 Text and Script Structure')`, so the name is `tut01`, and the display name is "Tutorial 1 Text and Script Structure"
 
-顺便说一句：：Lua中的函数如果只有一个参数，并且参数是string literal或者table constructor，那么函数的括号可以省略（详见[Lua官网](https://www.lua.org/pil/5.html)）
+By the way: If a function in Lua has only one parameter, and the parameter is a string literal or a table constructor, the parentheses of the function can be omitted (see [Lua official website](https://www.lua.org/pil/5 .html))
 
-而这个节点的开头只有`label 'tut01_2'`，那么显示名称默认与（同一个文件中的）上面的节点相同。你可以在存档界面里看看
+And this node only starts with `label 'tut01_2'`, then the display name defaults to the same as the node above (in the same file). You can check it out in the archive interface
 @<| jump_to 'tut01_3' |>
 
 @<|
-label('tut01_3', '教程1的后半部分')
+label('tut01_3', 'The second half of tutorial 1')
 |>
-现在我们又定义了一个节点，并且改变了显示名称
+Now we define another node and change the display name
 
-如果一段剧情比较长，可以把它拆成好几个节点，还可以放到好几个txt文件里
+If a plot is relatively long, it can be split into several nodes, and can also be placed in several txt files
 
-节点的名称必须各不相同，而显示名称可以相同，这样玩家就不会注意到脚本当中其实有好几个节点
+The names of the nodes must be different, but the display name can be the same so the player doesn't notice that there are actually several nodes in the script
 
-节点开头的提前代码块当中，还需要定义开始位置，也就是这个节点会不会显示在章节选择界面里
+In the advance code block at the beginning of the node, it is also necessary to define the starting position, that is, whether this node will be displayed in the chapter selection interface
 
-`is_start`表示这个节点是开始位置，玩家在游戏中走到这个节点之后，开始位置就会在章节选择界面中解锁
+`is_start` indicates that this node is the starting position. After the player walks to this node in the game, the starting position will be unlocked in the chapter selection interface
 
-`is_unlocked_start`表示这个节点是开始位置，而且一开始就解锁了
+`is_unlocked_start` indicates that this node is the starting position and is unlocked at the beginning
 
-`is_default_start`表示这个节点是默认的开始位置
+`is_default_start` indicates that this node is the default start position
 
-如果你不需要章节选择界面，可以只在第一个节点中设置`is_default_start`，其他节点中都不设置开始位置
+If you don't need the chapter selection interface, you can set `is_default_start` only in the first node, and do not set the start position in other nodes
 
-而在节点结尾的提前代码块当中，一般要有一个`jump_to`函数，定义跳转到的节点的名称
+In the advance code block at the end of the node, there is generally a `jump_to` function, which defines the name of the node to jump to
 
-如果剧情结束了，则要用`is_end`函数
+If the plot is over, use the `is_end` function
 
-顺便说一句：：至于分支选项怎么做，以后再讲
+By the way: As for how to do the branch option, I will talk about it later
 
-修改脚本之后，在游戏中按R可以重新加载脚本，而不用重新开始游戏
+After modifying the script, pressing R in the game will reload the script without restarting the game
 
-这个功能在Unity Editor里才有效，游戏打包出来之后就没有了
+This function is only valid in the Unity Editor, and it is gone after the game is packaged
 
-如果修改脚本之后运行游戏出现报错，一般是因为之前的存档和新的脚本不兼容。这时需要清空存档，在Unity Editor的上面的菜单中点击`Nova -> Clear Save Data`
+If an error occurs when running the game after modifying the script, it is generally because the previous archive is incompatible with the new script. At this time, you need to clear the archive, click `Nova -> Clear Save Data` in the upper menu of the Unity Editor
 
-在制作游戏时，增加新的脚本一般不需要清空存档，修改已有的脚本可能需要清空存档。游戏打包出来之后，玩家在正常情况下不会需要清空存档
+When making a game, adding a new script generally does not require clearing the archive, and modifying an existing script may require clearing the archive. After the game is packaged, players will not need to clear the save file under normal circumstances
 
-如果你想试试修改Colorless的脚本，需要先删除英文版的脚本，否则中文与英文的脚本会对不上（详见[GitHub上面的使用说明](https://github.com/Lunatic-Works/Nova)）
+If you want to try to modify the Colorless script, you need to delete the English version of the script first, otherwise the Chinese and English scripts will not work (see the [Instructions on GitHub](https://github.com/Lunatic-Works /Nova))
 
-教程1 文字与脚本结构 到此结束
+This concludes Tutorial 1 Text and Script Structure
 @<| jump_to 'tut02' |>

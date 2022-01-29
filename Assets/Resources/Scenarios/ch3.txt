@@ -1,5 +1,5 @@
 @<|
-label('ch3', '第三章')
+label('ch3', 'Chapter 3')
 is_start()
 |>
 <|
@@ -9,98 +9,98 @@ anim:trans_fade(cam, function()
 play(bgs, 'rain')
 anim:volume(bgs, 0.2, 3)
 box_hide_show(2)
-auto_voice_off('王二宫')
-auto_voice_off('张浅野')
-auto_voice_on('孙西本', 2)
-auto_voice_off('陈高天')
+auto_voice_off('Wang Er Gong')
+auto_voice_off('Zhang Asano')
+auto_voice_on('Sun Xiben', 2)
+auto_voice_off('Chen Gaotian')
 v_flag_xiben = true
 |>
-我在走廊看着不断落下的雨，让自己的头脑冷静下来。
+I watched the falling rain in the hallway and calmed my mind.
 
-这是我小时候和青梅竹马一起玩时养成的习惯。
+It's a habit I picked up when I was a kid playing with childhood sweethearts.
 
-回想起来，那段时光或许是我人生里最快乐的日子。
+Looking back, that time was probably the happiest day of my life.
 
 <|
 show(xiben, 'normal', pos_r)
 play(bgm, 'xiben')
 |>
-我看了看走廊，果然孙西本也在。
+I looked at the corridor, and sure enough, Sun Xiben was there.
 
-我透过墨镜，看着她的头发在风中渐渐变得凌乱。
+Through my sunglasses, I watched her hair gradually become messy in the wind.
 
-她看着窗外，完全没有和我搭话的意思。
+She looked out the window and had absolutely no intention of talking to me.
 
-但是我却很想和她说话。
+But I really want to talk to her.
 
-李竹内：：“你也出来了？”
+Li Zhunei: "You came out too?"
 
-西本没有回答我。
+Nishimoto didn't answer me.
 
 <|
 anim:move(cam, {1, 1, 4})
 |>
-我走到她的身边，又重复了一遍刚才的话。
+I walked over to her and repeated what I just said.
 
-西本转过头橫了我一眼，然后又厌恶地转过身去。
+Nishimoto turned his head and gave me a sideways glance, then turned away in disgust.
 
-孙西本：：“怎么？非要让我看到那个女孩一口一口喂你奶茶，你才高兴么？”
+Sun Xiben: "What? Are you happy if I have to see that girl feed you milk tea one by one?"
 
-李竹内：：“你知道的，高天不是那种人。”
+Li Zhunei: "You know, Gao Tian is not that kind of person."
 
-孙西本：：“是啊，她不是那种人。”
+Sun Xiben: "Yeah, she's not that kind of person."
 
-西本依旧背对着我，我感觉她要哭了。
+Nishimoto still had her back to me, and I felt like she was about to cry.
 
-孙西本：：“如果她更坏一点，就好了。”
+Sun Xiben: "It would be nice if she was worse."
 
-我无言以对。
+I am speechless.
 
-孙西本：：“你既然已经消失这么多年，为什么还要戴着那愚蠢的墨镜回来？”
+Sun Xiben: "Since you have disappeared for so many years, why are you still wearing those stupid sunglasses?"
 
-孙西本：：“你以为天天戴着它我就认不出来你么，转校生？”
+Sun Xiben: "Do you think I won't recognize you if you wear it every day, transfer student?"
 
-小时候的西本很爱哭，但是长大了的她就不再对外展露自己的情绪。
+Nishimoto loved to cry when she was a child, but when she grew up, she stopped showing her emotions to the outside world.
 
-这或许和我有关系，所以我就更不能让西本卷到这件事里来。
+This may have something to do with me, so I can't let Nishimoto get involved in this matter.
 
-李竹内：：“走廊很冷，该回去了。”
+Li Zhunei: "The corridor is very cold, it's time to go back."
 
-西本抱着肩膀瞪着我。
+Nishimoto glared at me holding his shoulders.
 
-她孱弱的身躯在制服里瑟瑟发抖。
+Her frail body shivered in her uniform.
 
-孙西本：：“这就是你想对我说的话么？”
+Sun Xiben: "Is this what you want to say to me?"
 
-我默默地凝视着西本。
+I stared at Nishimoto silently.
 
 <|
 anim:move(cam, {3, 1.5, 3})
 |>
-这是我进入学生会以来第一次鼓起勇气仔细地看着她。
+This is the first time since I entered the student council that I mustered up the courage to look at her carefully.
 
-和小时候比起来，西本长高了，面容也褪去了稚气。
+Compared with his childhood, Nishimoto has grown taller, and his face has faded from childishness.
 
-但是她依旧在头上绑着我过去送给她的缎带。
+But she still has the ribbon around her head that I gave her in the past.
 
-我看了那缎带很久，然后开口。
+I looked at the ribbon for a long time, then opened my mouth.
 
-李竹内：：“是的，西本同学。”
+Li Takeuchi: "Yes, classmate Nishimoto."
 
 <|
 hide(xiben)
 sound('clap')
 |>
-孙西本：：“你混蛋！”
+Sun Xiben: "You bastard!"
 
 <|
 anim:move(cam, {0, 0, 5})
 |>
-被甩了一个耳光的我，只能呆呆地看着西本跑开。
+Being slapped in the face, I could only stare blankly at Nishimoto running away.
 
 <|
 anim:trans_fade(bg, 'black')
 anim:fade_out(bgm)
 |>
-我的手心还牢牢地攥着那个玻璃小瓶。
+I still hold the glass vial firmly in the palm of my hand.
 @<| jump_to 'ch4' |>

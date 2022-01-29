@@ -7,13 +7,13 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试持续动画
+Test continuous animation
 
 <|
 anim_persist_begin()
 anim_persist:move(bg, {5, 0}, 10)
 |>
-开始持续动画
+start continuous animation
 
 111
 
@@ -23,7 +23,7 @@ anim_persist:move(bg, {5, 0}, 10)
 anim_persist:stop()
 anim_persist:tint(bg, {0, 0, 1}, 10)
 |>
-停止上一段持续动画，开始下一段持续动画
+Stop the previous continuous animation and start the next continuous animation
 
 333
 
@@ -32,12 +32,12 @@ anim_persist:tint(bg, {0, 0, 1}, 10)
 <|
 anim_persist_end()
 |>
-停止持续动画
+stop continuous animation
 
 <|
 anim:action(function() anim:stop() end)
 |>
-停止动画的奇怪情况
+Strange case of stop animation
 
-测试结束
+end of test
 @<| is_end() |>

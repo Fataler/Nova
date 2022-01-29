@@ -1,5 +1,5 @@
 @<|
-label('tut05', '教程5 动画')
+label('tut05', 'Tutorial 5 animation')
 is_start()
 |>
 <|
@@ -7,33 +7,33 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-教程5 动画
+Tutorial 5 Animation
 
 <|
 show(gaotian, 'normal', pos_l)
 anim:move(gaotian, pos_r)
 |>
-`anim:move`函数用来创建移动动画
+The `anim:move` function is used to create a move animation
 
 <|
 move(gaotian, pos_l)
 |>
-如果没有`anim`，`move`就是瞬间完成的
+Without `anim`, `move` is instantaneous
 
-顺便说一句：：`anim`是一个Lua对象`WrapAnim`，其中封装了Hierarchy中的`DontDestroyOnLoad/​NovaGameController/​NovaAnimation/​PerDialogue`，而`move`是`anim`的一个方法
+BTW: `anim` is a Lua object `WrapAnim`, which encapsulates `DontDestroyOnLoad/​NovaGameController/​NovaAnimation/​PerDialogue` in Hierarchy, and `move` is a method of `anim`
 
-顺便说一句：：具体可以看`animation.lua`和`animation_high_level.lua`
+By the way: see `animation.lua` and `animation_high_level.lua` for details
 
 <|
 anim:move(gaotian, pos_r, 2)
 |>
-`anim:move`的第三个参数是动画的时长，单位为秒，默认为1秒
+The third parameter of `anim:move` is the duration of the animation, in seconds, the default is 1 second
 
-`anim:move`的第四个参数是easing，就是非线性动画的加减速
+The fourth parameter of `anim:move` is easing, which is the acceleration and deceleration of nonlinear animation
 
-大多数时候，它是一个table，有两个参数，分别表示动画开始时和结束时的速度
+Most of the time, it's a table with two parameters representing the speed at the beginning and end of the animation
 
-移动动画的easing默认为`{0, 0}`，看起来会有比较自然的加减速。接下来举几个例子
+The default easing of the moving animation is `{0, 0}`, which seems to have a more natural acceleration and deceleration. Here are a few examples
 
 <|
 show(gaotian, 'normal', {-5, 3.5, 0.1})
@@ -41,7 +41,7 @@ show(xiben, 'normal', {-5, 0.5, 0.1})
 anim:move(gaotian, {5}, 2, {0, 2})
 anim:move(xiben, {5}, 2, {1, 1})
 |>
-上面的小人先慢后快
+The little man above is slow first and then fast
 
 <|
 move(gaotian, {-5})
@@ -49,7 +49,7 @@ move(xiben, {-5})
 anim:move(gaotian, {5}, 2, {2, 0})
 anim:move(xiben, {5}, 2, {1, 1})
 |>
-上面的小人先快后慢
+The little man above is fast first and then slow
 
 <|
 move(gaotian, {-5})
@@ -57,9 +57,9 @@ move(xiben, {-5})
 anim:move(gaotian, {5}, 2, {0, -1})
 anim:move(xiben, {5}, 2, {1, 1})
 |>
-上面的小人跑出去一段再回来（结束时的速度为-1）
+The villain above runs out for a while and then comes back (the speed at the end is -1)
 
-顺便说一句：：上面这些非线性动画用的都是三次曲线，如果想用其他种类的曲线，可以把easing的第一个参数设为曲线的名字，这些名字在`animation.lua`中的`easing_func_name_map`里定义
+By the way: The above nonlinear animations use cubic curves. If you want to use other types of curves, you can set the first parameter of easing to the name of the curve. These names are in `animation.lua` in ` Defined in easing_func_name_map`
 
 <|
 move(gaotian, {-5})
@@ -67,7 +67,7 @@ move(xiben, {-5})
 anim:move(gaotian, {5}, 2, {'bezier', 0, 1})
 anim:move(xiben, {5}, 2, {1, 1})
 |>
-顺便说一句：：比如`bezier`可以做出更加夸张的加减速
+BTW: For example `bezier` can make more exaggerated acceleration and deceleration
 
 <|
 move(gaotian, {0})
@@ -75,36 +75,36 @@ move(xiben, {-5})
 anim:move(gaotian, {5}, 2, {'shake', 20, 0.5})
 anim:move(xiben, {5}, 2, {1, 1})
 |>
-顺便说一句：：`shake`可以做出晃动，注意它最后不会停在`move`定义的目标位置，而是停在初始位置
+By the way: `shake` can make a shake, note that it will not stop at the target position defined by `move` at the end, but stop at the initial position
 
 <|
 move(gaotian, pos_c)
 hide(xiben)
 anim:tint(gaotian, {0.5, 1, 0.5}, 2)
 |>
-`anim:tint`函数用来创建变色动画
+The `anim:tint` function is used to create a color-changing animation
 
 <|
 tint(gaotian, 1)
 play(bgm, 'gaotian', 0)
 anim:volume(bgm, 0.5, 3)
 |>
-`anim:volume`函数用来创建音量动画
+The `anim:volume` function is used to create volume animations
 
 <|
 anim:fade_in(bgm, 'qianye', 0.5, 3)
 |>
-因为经常会先开始播放音乐并把音量设为0，再用动画改变音量，我们提供了`anim:fade_in`函数用来淡入音乐
+Since it is common to start playing music and set the volume to 0, and then use animation to change the volume, we provide the `anim:fade_in` function to fade in the music
 
 <|
-anim:fade_out(bgm, 3)
+anim: fade_out(bgm, 3)
 |>
-`anim:fade_out`函数则是淡出音乐
+`anim:fade_out` function is to fade out the music
 
 <|
 anim:move(gaotian, pos_r):move(gaotian, pos_l)
 |>
-在一段动画的后面继续用`move`等方法创建动画，就能把动画串联起来
+Continue to use `move` and other methods to create animations after an animation, you can connect animations in series
 
 <|
 anim:move(gaotian, pos_r
@@ -112,13 +112,13 @@ anim:move(gaotian, pos_r
     ):move(gaotian, pos_l
     ):_and():tint(gaotian, 1)
 |>
-要让两段动画并行，可以用`_and()`函数
+To make two animations in parallel, use the `_and()` function
 
-上面的动画开始播放时，暂停游戏，在Hierarchy中的`DontDestroyOnLoad/​NovaGameController/​NovaAnimation`里可以看到多段动画的树状结构
+When the above animation starts to play, pause the game, you can see the tree structure of multiple animations in `DontDestroyOnLoad/​NovaGameController/​NovaAnimation` in Hierarchy
 
-顺便说一句：：`anim:move`当中其实有三个`AnimationEntry`，分别控制位置、旋转、缩放
+By the way: There are actually three `AnimationEntry` in `anim:move`, which control position, rotation, and scale respectively
 
-顺便说一句：：Lua不允许在冒号之前换行，所以用Lua写fluent interface的换行看起来很蛋疼。。
+BTW: Lua doesn't allow line breaks before colons, so writing fluent interface line breaks in Lua seems like a pain in the ass. .
 
 <|
 show(xiben, 'normal', pos_r)
@@ -128,7 +128,7 @@ entry:tint(gaotian, {0.5, 1, 0.5})
 entry:move(xiben, pos_c)
 entry:tint(xiben, {1, 0.5, 0.5})
 |>
-想要创建更复杂的树状结构，可以把一段动画的终点保存到一个局部变量里，再把这个变量作为多段动画的起点
+To create a more complex tree structure, you can save the end point of an animation in a local variable, and use this variable as the start point of multiple animations
 
 <|
 move(gaotian, pos_l)
@@ -139,9 +139,9 @@ anim:move(gaotian, pos_r
     ):wait(1
     ):move(gaotian, pos_l)
 |>
-`anim:wait`函数用来延时，单位仍然是秒
+The `anim:wait` function is used to delay, the unit is still seconds
 
-显示/隐藏角色、改变表情等操作是瞬间完成的，想要把它们放到动画里，就要用`anim:action`函数把它们转换成一段（时长为0的）动画
+Operations such as showing/hiding characters, changing expressions, etc. are done instantaneously. If you want to put them in the animation, you need to use the `anim:action` function to convert them into an animation (with a duration of 0)
 
 <|
 anim:move(gaotian, pos_r
@@ -149,7 +149,7 @@ anim:move(gaotian, pos_r
     ):move(gaotian, pos_l
     ):action(hide, gaotian)
 |>
-`anim:action`的第一个参数是一个瞬间完成的函数，后面的参数则是那个函数的参数
+The first parameter of `anim:action` is a function that completes in an instant, and the following parameters are the parameters of that function
 
 <|
 show(gaotian, 'normal', pos_l)
@@ -165,25 +165,25 @@ anim:move(gaotian, pos_r
         hide(xiben)
     end)
 |>
-也可以把`anim:action`的第一个参数设为一个匿名函数，里面可以写任何代码
+You can also set the first parameter of `anim:action` to an anonymous function, in which you can write any code
 
-顺便说一句：：虽然`action`里可以写任何代码，但是最好不要在`action`里创建新的动画，这个需求一般可以用动画的串行和并行来实现
+By the way: Although any code can be written in `action`, it is best not to create new animations in `action`. This requirement can generally be achieved by serial and parallel animations
 
 <|
 anim_persist:move(gaotian, pos_r, 10)
 |>
-上面说的动画都是在一条对话之内的，如果想让动画跨越很多条对话，就要用`anim_persist`代替`anim`
+The animations mentioned above are all within one dialogue. If you want the animation to span many dialogues, you must use `anim_persist` instead of `anim`
 
-持续动画开始时要写`anim_persist_begin()`，它会处理动画系统和存档系统的一些状态
+Write `anim_persist_begin()` at the beginning of a persistent animation, it will handle some state of the animation system and save system
 
-顺便说一句：：`anim_persist`当中封装了Hierarchy中的`DontDestroyOnLoad/​NovaGameController/​NovaAnimation/​Persistent`
+By the way: `anim_persist` encapsulates `DontDestroyOnLoad/​NovaGameController/​NovaAnimation/​Persistent` in Hierarchy
 
-顺便说一句：：如果担心忘了写`anim_persist_begin`和`anim_persist_end`，可以用`Tools/Scenarios/lint.py`来检查
+BTW: If you worry about forgetting to write `anim_persist_begin` and `anim_persist_end`, you can use `Tools/Scenarios/lint.py` to check
 
 <|
 anim_persist_end()
 |>
-持续动画结束之后要写`anim_persist_end()`
+Write `anim_persist_end()` after the end of the persistent animation
 
 <|
 show(gaotian, 'normal', pos_l)
@@ -197,16 +197,16 @@ anim_persist:loop(function(entry)
         ):move(xiben, pos_c, 1.414)
 end)
 |>
-`anim_persist:loop`函数用来创建无限循环的动画
+The `anim_persist:loop` function is used to create an infinite loop animation
 
-它的参数是一个函数`func`，这个函数以一段动画为输入，在这段动画后面创建新的动画，并输出创建的动画的终点
+Its parameter is a function `func`, this function takes an animation as input, creates a new animation after this animation, and outputs the end point of the created animation
 
-因为是无限循环，它只能作为持续动画，而不能作为对话内动画
+Because it is an infinite loop, it can only be used as a continuous animation, not as an in-dialogue animation
 
 <|
 hide(gaotian)
 hide(xiben)
 anim_persist_end()
 |>
-教程5 动画 到此结束
+This concludes Tutorial 5 Animation
 @<| jump_to 'tut06' |>

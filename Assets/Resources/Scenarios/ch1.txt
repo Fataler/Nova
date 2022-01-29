@@ -1,5 +1,5 @@
 @<|
-label('ch1', '第一章')
+label('ch1', 'Chapter 1')
 is_default_start()
 |>
 <|
@@ -11,200 +11,200 @@ play(bgm, 'prelude')
 play(bgs, 'rain')
 anim:volume(bgs, 0.2, 3)
 box_hide_show(2)
-auto_voice_on('王二宫', 1)
-auto_voice_on('张浅野', 1)
-auto_voice_on('孙西本', 1)
-auto_voice_on('陈高天', 1)
+auto_voice_on('Wang Er Gong', 1)
+auto_voice_on('Zhang Qianye', 1)
+auto_voice_on('Sun Xiben', 1)
+auto_voice_on('Chen Gaotian', 1)
 set_auto_voice_delay(2)
 |>
-王二宫：：“真没想到，我们竟然会被暴雨困在了教学楼里。”
+Wang Ergong: Дарова!
 
-二宫会长少见地皱起了她秀气的眉头。
+President Ninomiya rarely frowned her delicate brows.
 
-秋天的雨似乎让她心情不佳。
+The autumn rain seemed to put her in a bad mood.
 
 <|
 hide(ergong)
 |>
-大家坐在学生会室之中，都选择了沉默。
+Everyone sat in the student council room and chose to remain silent.
 
-耳畔只能听见淅淅沥沥的雨声枯燥地重复着。
+All I could hear was the dull and repetitive sound of the rain.
 
 <|
 show(qianye, 'normal', pos_c)
 sound('flap', 0.5)
 |>
-浅野学长靠在椅背上，像是无聊似的耸了耸肩。
+Asano-senpai leaned back in the chair and shrugged as if bored.
 
-这是他特有的习惯。
+This is his peculiar habit.
 
-他是个有着一头白发的消瘦青年，在学生会里担任书记。
+He was a thin young man with white hair who served as secretary in the student council.
 
 <|
 hide(qianye)
 |>
-老师和校工今天都不会来，或许整个学校只剩下我们几个学生会干事。
+The teachers and janitors will not come today, maybe there are only a few student council officers left in the whole school.
 
-想到这一点，我不禁叹了口气。
+Thinking of this, I can't help but sigh.
 
 <|
 show(xiben, 'normal', pos_c)
 |>
-孙西本：：“没有人带伞么？”
+Sun Xiben: "Did anyone bring an umbrella?"
 
-西本同学用手指卷着自己的发梢，语气不算太好。
+Nishimoto-san curled the ends of his hair with his fingers, and his tone was not very good.
 
-孙西本是我的同班同学，但是却拒绝在学生会以外的地方和我交谈。
+Sun Xiben was my classmate, but he refused to talk to me outside the student union.
 
-如同任性的猫一样，眼角稍稍吊起的西本对谁都很冷淡。
+Like a willful cat, Nishimoto, with his eyes slightly raised, is cold to everyone.
 
-不过她若是多笑笑，想必能迷倒不少男生。
+But if she smiles more, she must be able to fascinate many boys.
 
 <|
 hide(xiben)
 |>
-我是真心这样觉得的。
+I really feel that way.
 
-西本成为学生会干事的理由是成绩突出，这也是我能坐在这里的原因。
+Nishimoto became the student council officer because of his outstanding grades, which is why I can sit here.
 
 <|
 show(gaotian, 'normal', pos_c)
-anim:fade_out(bgs, 2)
+anim: fade_out(bgs, 2)
 |>
-陈高天：：“大家来得太匆忙了呀！”
+Chen Gaotian: "Everyone is in a hurry!"
 
-高天摇曳着她柔顺的黑发。
+Gao Tian swayed her smooth black hair.
 
-陈高天：：“突然通知我们要来，连原因也不说明。我早上买的奶茶都忘记喝了。”
+Chen Gaotian: "We were suddenly notified that we were coming, and I didn't even explain the reason. I forgot to drink the milk tea I bought in the morning."
 
 <|
 show(ergong, 'normal', pos_l)
 anim:move(gaotian, pos_r)
 |>
-王二宫：：“我也不想这样啊，都是浅野说那个文件送到了嘛。”
+Wang Ergong: "I don't want this either. Asano said that the document was delivered."
 
 <|
 hide(gaotian)
 show(qianye, 'normal', pos_r)
 |>
-张浅野：：“结果还是因为暴雨延期了，这不是我的错。”
+Zhang Qianye: "It turned out to be delayed because of the rainstorm. It's not my fault."
 
-王二宫：：“你应该在跟我说之前确认一下情况啊！”
+Wang Ergong: "You should confirm the situation before telling me!"
 
-张浅野：：“那你也可以在联系学生会干部之前确认一下嘛。”
+Zhang Qianye: "Then you can also confirm before contacting the student union officials."
 
-和往常一样，二宫会长和浅野学长吵了起来。
+As usual, President Ninomiya and Asano-senpai quarreled.
 
-听说他们在我入学之前都参加了学生会会长的竞选，结果当然是二宫会长当选。
+I heard that they all participated in the election of the student council president before I enrolled, and of course President Ninomiya was elected.
 
-浅野学长只能退而求其次，成为了书记。
+Asano-senpai had no choice but to settle for the next best thing and became a secretary.
 
-因为此事，两个人不太对付，有时候会吵架。
+Because of this, the two do not deal with each other very well, and sometimes quarrel.
 
-不过看着他们一直吵来吵去，旁人或许会觉得他们关系很好。
+But watching them quarrel all the time, others may think they have a good relationship.
 
 <|
 hide(ergong)
 hide(qianye)
 anim:fade_out(bgm)
 |>
-我木然地看着两个人的互动。
+I stared blankly at the interaction between the two.
 
-这是学生会日常的一部分。
+This is part of the daily life of the Student Union.
 
 <|
 show(gaotian, 'normal', pos_c)
 play(bgm, 'gaotian')
 |>
-这时，高天从书包的侧面抽出了便利店之中常见的包装瓶。
+At this time, Gao Tian took out a packaging bottle commonly found in convenience stores from the side of his schoolbag.
 
-她对着我露出了抱歉似的笑容，然后将奶茶推到了我的面前。
+She gave me an apologetic smile and pushed the milk tea in front of me.
 
-我默默地看着她。
+I looked at her silently.
 
-高天纤细的手指在教室的日光灯映衬下，像是象牙打造的艺术品。
+Gao Tian's slender fingers look like works of art made of ivory against the fluorescent lights of the classroom.
 
-陈高天：：“嗯，买的时候没注意，这个奶茶分量稍微有点多。”
+Chen Gaotian: "Well, I didn't pay attention when I bought it. This milk tea has a little more weight."
 
-陈高天：：“竹内君，不介意的话……不如一起喝吧？”
+Chen Gaotian: "Takeuchi-kun, if you don't mind... why don't we drink together?"
 
-陈高天是和我一届的同学。
+Chen Gaotian was my classmate.
 
-一个月前我们开始交往了。
+We started dating a month ago.
 
-高天出生在一个单亲家庭，从没见过自己的父亲。
+Gao Tian was born into a single-parent family and never met his father.
 
-因此，高天十分敏感，比一般人更需要呵护。
+Therefore, Gao Tian is very sensitive and needs more care than ordinary people.
 
-虽然我们交往了一段时间，但她只是小心翼翼地牵过我的手。
+Although we dated for a while, she just held my hand cautiously.
 
-我们从没有更进一步的亲密举动。
+We never made further intimacy moves.
 
-即使如此，她似乎已经觉得很幸福了。
+Even so, she seems to have felt very happy.
 
-或许是她的心境受到了秋雨的影响，故而提出了这样的请求。
+Perhaps her mood was affected by Qiu Yu, so she made such a request.
 
 <|
 hide(gaotian)
 |>
-学生会所有的人都看着我，他们对高天的过去都略知一二。
+Everyone in the student council looked at me, and they all knew a thing or two about Gao Tian's past.
 
-我不可能拒绝。
+I can't refuse.
 
 <|
 show(gaotian, 'normal')
 |>
-李竹内：：“好的。”
+Li Zhunei: "Okay."
 
-陈高天：：“还以为竹内君会觉得讨厌呢。”
+Chen Gaotian: "I thought Takeuchi-kun would find it annoying."
 
-高天露出令人怜惜的微笑，轻轻地拍了拍自己的胸口。
+Gao Tian showed a pitiful smile and patted his chest lightly.
 
-李竹内：：“不会。”
+Li Zhunei: "No."
 
-陈高天：：“竹内君一直话很少，还带着很酷的墨镜，我开始还以为很难接近呢。”
+Chen Gaotian: "Takeuchi-kun has been talking very little, and wearing cool sunglasses, I thought it was difficult to approach at first."
 
-陈高天：：“啊，我不是在说竹内君不好。学习成绩很厉害，而且学生会的工作也做得很棒。”
+Chen Gaotian: "Ah, I'm not saying that Takeuchi-kun is not good. His academic performance is very good, and the work of the student union is also very good."
 
-陈高天：：“尤其是很温柔，真的很温柔。”
+Chen Gaotian: "Especially very gentle, really gentle."
 
-陈高天：：“对像我这样毫无特点的笨女孩也很体贴……”
+Chen Gaotian: "I'm also very considerate to a stupid girl like me..."
 
 <|
 show(gaotian, 'cry')
 |>
-陈高天：：“果然竹内君接受我的告白，只是因为同情我吧。”
+Chen Gaotian: "Sure enough, Takeuchi-kun accepted my confession just because he sympathized with me."
 
-高天说着说着，眼角微微湿润了。
+As Gao Tian spoke, the corners of his eyes were slightly moist.
 
-高天还是一个十分爱哭的女孩。
+Gao Tian is also a very crying girl.
 
 <|
 hide(gaotian)
 |>
-我的身体僵硬。因为我察觉到，西本和会长在用尖锐的眼神瞪着我。
+My body is stiff. Because I noticed that Nishimoto and the president were staring at me with sharp eyes.
 
-幸好，这时浅野转移了话题。
+Fortunately, Asano changed the subject at this time.
 
 <|
 show(qianye, 'normal', pos_c)
 |>
-张浅野：：“啊，对了，储物室有一次性的杯子。奶茶要是凉了呀……还是慢点喝为好。”
+Zhang Qianye: "Ah, yes, there are disposable cups in the storage room. If the milk tea is cold... it's better to drink it slowly."
 
-浅野一边说着，一边对我摇了摇小指。
+Asano said that while shaking his pinky finger at me.
 
 <|
 hide(qianye)
 |>
-我心领神会。
+I get it.
 
-李竹内：：“我去拿一下杯子。”
+Li Zhunei: "I'll go get a cup."
 
-我转身离开了学生会室。
+I turned and left the student council room.
 
 <|
 anim:trans_fade(bg, 'black')
 anim:fade_out(bgm)
 |>
-我出门的时候，依旧可以感觉到有目光追随着我的背影。
+When I go out, I can still feel eyes following my back.
 @<| jump_to 'ch2' |>

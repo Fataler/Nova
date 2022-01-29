@@ -1,5 +1,5 @@
 @<|
-label('tut04', '教程4 对话框')
+label('tut04', 'Tutorial 4 dialog')
 is_start()
 |>
 <|
@@ -7,70 +7,70 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-教程4 对话框
+Tutorial 4 Dialogs
 
 <|
 set_box('full', 'dark')
 |>
-`set_box`函数用来设置对话框的位置和风格
+The `set_box` function is used to set the position and style of the dialog
 
-它的第一个参数是对话框位置的预设名称，比如`full`就是把对话框位置设成全屏
+Its first parameter is the default name of the dialog position, such as `full` is to set the dialog position to full screen
 
-所有的位置预设在`dialogue_box.lua`里的`box_pos_presets`当中定义
+All position presets are defined in `box_pos_presets` in `dialogue_box.lua`
 
-其中的`anchor`是对话框的左右下上四条边在屏幕中的位置，用0..1之间的数表示
+The `anchor` is the position of the four sides of the dialog box on the screen, represented by a number between 0..1
 
-`offset`则是左右上下四条边在`anchor`的基础上向里移动的距离，用像素表示
+`offset` is the distance that the left, right, up, and down sides move inward on the basis of `anchor`, expressed in pixels
 
-`anchor`和`offset`一般只需要用到两者之一，可以根据你设计UI的习惯来用
+`anchor` and `offset` generally only need one of the two, which can be used according to your UI design habits
 
-`update_mode`是对话框的更新方式，可以设为`Overwrite`或`Append`
+`update_mode` is the update mode of the dialog, which can be set to `Overwrite` or `Append`
 
-平常对话框在屏幕下方时，更新方式是`Overwrite`，每显示一条新的对话，旧的对话就不显示了
+Usually when the dialog is at the bottom of the screen, the update method is `Overwrite`. Every time a new dialog is displayed, the old dialog will not be displayed.
 
-而全屏对话框的更新方式是`Append`，显示新的对话时，旧的对话还在上面
+And the update method of the full screen dialog is `Append`, when the new dialog is displayed, the old dialog is still on it
 
-更新方式包括在位置的预设中，因为设置位置的同时一般也会设置更新方式
+The update method is included in the preset of the location, because the update method is generally set when the location is set
 
 <|
 new_page()
 |>
-顺便说一句：：`new_page`函数用来清空对话框
+BTW:: `new_page` function is used to clear the dialog
 
 <|
 set_box('left', 'dark')
 |>
-改变对话框位置时，对话框也会自动清空
+When changing the position of the dialog box, the dialog box will also be automatically cleared
 
 <|
 set_box('right', 'dark', false)
 |>
-如果不想自动清空，可以把`set_box`的第三个参数设为false
+If you don't want to clear it automatically, you can set the third parameter of `set_box` to false
 
 <|
 set_box('full', 'dark')
 |>
-`set_box`的第二个参数是风格的预设名称
+The second parameter of `set_box` is the preset name of the style
 
-所有的风格预设在`dialogue_box.lua`里的`box_style_presets`当中定义
+All style presets are defined in `box_style_presets` in `dialogue_box.lua`
 
-其中的`tint`是对话框背景的颜色，这个颜色会乘到对话框背景图片原本的RGBA数值上
+Where `tint` is the color of the dialog background, this color will be multiplied by the original RGBA value of the dialog background image
 
-`alignment`是文本的对齐方式，`text_color`是文本的颜色
+`alignment` is the alignment of the text, `text_color` is the color of the text
 
-`text_material`是文本的材质，一般用来做描边或者发光等等效果，`outline`就是描边
+`text_material` is the material of the text, which is generally used for strokes or lighting effects, and `outline` is the stroke
 
 <|
 set_box('full', 'transparent', false)
 |>
-当对话框的背景透明时，一般需要给文本加上描边
+When the background of the dialog box is transparent, it is generally necessary to add a stroke to the text
 
 <|
 set_box('full', 'dark')
 |>
-顺便说一句：：创建material preset的方法详见[Unity官网](https://learn.unity.com/tutorial/textmesh-pro-working-with-material-presets)。在创建之后，还要在`UI` game object里的`I18nFontConfig.config`中设置每种语言对应的字体、材质和材质名称
+By the way: See [Unity official website](https://learn.unity.com/tutorial/textmesh-pro-working-with-material-presets) for the method of creating material presets. After creation, set the font, material and material name corresponding to each language in `I18nFontConfig.config` in the `UI` game object
 
-顺便说一句：：位置预设当中的`theme`的实现详见`DialogueBoxController.cs`，用来控制对话框的更多排版要素，包括背景图片的替换、关闭按钮和对话结束图标的位置、文本与对话框边缘的距离、角色名字与说话内容的距离等等
+By the way: For the implementation of the `theme` in the position preset, see `DialogueBoxController.cs`, which is used to control more typographic elements of the dialog box, including the replacement of the background image, the position of the close button and the dialog end icon, and the text. Distance from the edge of the dialog, distance from the character name to the content of the speech, etc.
 
 <|
 set_box('hide')
@@ -79,52 +79,52 @@ set_box('hide')
 <|
 set_box()
 |>
-`set_box('hide')`可以隐藏对话框，其实就是把对话框的位置移到屏幕之外
+`set_box('hide')` can hide the dialog box, which is actually moving the position of the dialog box outside the screen
 
-`set_box()`的所有参数都是默认值，就是把对话框设置成默认的位置和风格
+All parameters of `set_box()` are default values, which is to set the dialog box to the default position and style
 
-顺便说一句：：游戏开始时对话框是隐藏的，所以这些教程的开头都有`set_box()`
+BTW:: the dialog is hidden when the game starts, so these tutorials have `set_box()` at the beginning
 
-顺便说一句：：这种每章开头都要写的代码如果很多，可以写成一个函数放到`animation_presets.lua`里
+By the way: If there is a lot of code to be written at the beginning of each chapter, you can write a function and put it in `animation_presets.lua`
 
 <|
 box_alignment('center')
 |>
-`dialogue_box.lua`当中提供的其他函数也可以单独用，`set_box`其实就是把预设的值传到这些函数里
+Other functions provided in `dialogue_box.lua` can also be used independently, `set_box` actually passes the preset value to these functions
 
 <|
 set_box()
 |>
-文本中可以使用TextMeshPro提供的rich text XML标记（详见[TextMeshPro官网](http://digitalnativestudios.com/textmeshpro/docs/rich-text/)）
+The rich text XML markup provided by TextMeshPro can be used in the text (see [TextMeshPro official website](http://digitalnativestudios.com/textmeshpro/docs/rich-text/))
 
-比如<b>粗体</b>、<i>斜体</i>、<s>删除线</s>、<color=#FF0000>改变颜色</color>、<size=150%>改变大小</size>
+Such as <b>bold</b>, <i>italic</i>, <s>strikeout</s>, <color=#FF0000>change color</color>, <size=150%>change size</size>
 
-顺便说一句：：为了方便写这些教程，我们还parse了Markdown的超链接和代码块，但是一般的游戏里应该不会用到吧
+By the way: In order to facilitate writing these tutorials, we also parsed Markdown hyperlinks and code blocks, but they should not be used in general games.
 
 <|
 show(xiben, 'normal', pos_c)
 sound('clap')
 box_hide_show(2)
 |>
-`box_hide_show`用来让对话框消失几秒再出现，这个技巧可以把空间留给演出
+`box_hide_show` is used to make the dialog disappear for a few seconds and then reappear, this trick can leave room for the show
 
 <|
 hide(xiben)
 stop_ff()
 |>
-`stop_ff`函数用来停止快进，`stop_auto_ff`则用来停止自动播放和快进
+`stop_ff` function is used to stop fast forward, `stop_auto_ff` is used to stop autoplay and fast forward
 
-你可以试试回到几条对话之前，然后按住Ctrl键快进，就会在上面那条对话停下来。在每章结束或者重要的剧情之前可以这么做
-
-<|
-alert('这是警告框')
-|>
-`alert`函数用来显示警告
+You can try going back to a few conversations before, and then holding down the Ctrl key to fast-forward, it will stop at the conversation above. This can be done before the end of each chapter or before an important plot
 
 <|
-notify('这是通知框')
+alert('This is an alert box')
 |>
-`notify`函数用来显示通知
+The `alert` function is used to display warnings
 
-教程4 对话框 到此结束
+<|
+notify('This is a notification box')
+|>
+The `notify` function is used to display notifications
+
+This concludes Tutorial 4 Dialogs
 @<| jump_to 'tut05' |>

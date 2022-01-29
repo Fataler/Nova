@@ -7,39 +7,39 @@ show(bg, 'rain')
 stop(bgm)
 set_box()
 |>
-测试头像
+test avatar
 
 <|
 avatar_show('normal')
 |>
-王二宫：：第一个人的头像
+Wang Er Gong:: Avatar of the first person
 
-没有人说话的时候就没有头像
+There is no avatar when no one speaks
 
-王二宫：：出现刚才的头像
+Wang Ergong:: The avatar just now appeared
 
-李竹内：：没有头像
+Takeuchi Lee::No Avatar
 
-王二宫：：还是刚才的头像
+Wang Ergong:: Still the avatar just now
 
 <|
 avatar_show('normal')
 |>
-陈高天：：第二个人的头像
+Chen Gaotian:: Avatar of the second person
 
 <|
 avatar_show('cry')
 |>
-陈高天：：换一个表情
+Chen Gaotian :: Change the expression
 
 <|
 avatar_hide()
 |>
-陈高天：：头像消失
+Chen Gaotian:: Avatar disappears
 
-王二宫：：仍然是刚才的头像
+Wang Ergong:: Still the avatar just now
 
-陈高天：：仍然没有头像
+Chen Gaotian:: still no avatar
 
-测试结束
+end of test
 @<| is_end() |>
