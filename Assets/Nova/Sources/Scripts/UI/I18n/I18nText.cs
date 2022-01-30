@@ -5,6 +5,7 @@ using UnityEngine.UI;
 namespace Nova
 {
     // Attach this to provide text content according to the translation key.
+    [ExecuteInEditMode]
     public class I18nText : MonoBehaviour
     {
         public string inflateTextKey;
@@ -22,6 +23,7 @@ namespace Nova
                 "Missing Text or TMP_Text or TextProxy.");
         }
 
+        [ContextMenu("UpdateText")]
         private void UpdateText()
         {
             string str = I18n.__(inflateTextKey);
