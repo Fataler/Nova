@@ -195,7 +195,7 @@ MonoBehaviour:
   selectionOccurs:
     m_PersistentCalls:
       m_Calls: []
-  currentRouteEnded:
+  routeEnded:
     m_PersistentCalls:
       m_Calls: []
   maxStepNumFromLastCheckpoint: 10
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd415c344d03e4241af0424958c766cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveFolder: 
+  saveFolder: Fcode
 --- !u!114 &114842112916876254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a87d00e059b428b86d1e0191320d9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 0}
+  cursorTexture: {fileID: 2800000, guid: 81836406e336d9f43a5b588bb39b8a01, type: 3}
   hotSpot: {x: 0, y: 0}
   autoHideAfterDuration: 1
   hideAfterSeconds: 5
