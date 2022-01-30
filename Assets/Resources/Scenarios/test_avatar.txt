@@ -16,11 +16,11 @@ Wang Er Gong:: Avatar of the first person
 
 There is no avatar when no one speaks
 
-Wang Ergong:: The avatar just now appeared
+Wang Er Gong:: The avatar just now appeared
 
 Takeuchi Lee::No Avatar
 
-Wang Ergong:: Still the avatar just now
+Wang Er Gong:: Still the avatar just now
 
 <|
 avatar_show('normal')
@@ -30,14 +30,14 @@ Chen Gaotian:: Avatar of the second person
 <|
 avatar_show('cry')
 |>
-Chen Gaotian :: Change the expression
+Chen Gaotian:: Change the expression
 
 <|
 avatar_hide()
 |>
 Chen Gaotian:: Avatar disappears
 
-Wang Ergong:: Still the avatar just now
+Wang Er Gong:: Still the avatar just now
 
 Chen Gaotian:: still no avatar
 
