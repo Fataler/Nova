@@ -11,7 +11,7 @@ namespace Nova
         private DateTime nextTimeUpdate;
         private static DateTime curTime => DateTime.Now;
 
-        private void Start()
+        private void Awake()
         {
             timeText = GetComponent<Text>();
             UpdateTime();
