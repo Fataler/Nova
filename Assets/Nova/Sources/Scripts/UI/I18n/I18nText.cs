@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Nova
 {
     // Attach this to provide text content according to the translation key.
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     public class I18nText : MonoBehaviour
     {
         public string inflateTextKey;
