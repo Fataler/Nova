@@ -13,6 +13,10 @@ function auto_fade_off()
     auto_fade_off_count = auto_fade_off_count + 1
 end
 
+function unlock_image(obj, image_name)
+    __Nova.imageUnlockHelper:Unlock(obj.imageFolder .. '/' .. image_name)
+end
+
 --- usage:
 ---     show(obj, 'image_name', [{x, y, [scale, z, angle]}, {r, g, b, [a]}, fade])
 function show(obj, image_name, coord, color, fade)

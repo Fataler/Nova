@@ -32,4 +32,20 @@ function minigame(prefab_loader, prefab_name)
     __Nova.coroutineHelper:StopInterrupt()
     input_on()
 end
+
+function load_prefab(prefab_loader, prefab_name, coord)
+    if not check_lazy_not_before('load_prefab') then
+        return
+    end
+
+    input_off()
+    __Nova.coroutineHelper:StartInterrupt()
+
+    show(prefab_loader, prefab_name, coord)
+    wait_fence()
+    hide(prefab_loader)
+
+    __Nova.coroutineHelper:StopInterrupt()
+    input_on()
+end
 Nova.ScriptDialogueEntryParser.AddCheckpointPattern('minigame', 'ensure_ckpt_on_next_dialogue')

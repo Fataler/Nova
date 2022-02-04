@@ -82,13 +82,13 @@
     },
     "ButtonRingSize": {
         "min": 100,
-        "defaultValue": 200,
+        "defaultValue": 250,
         "max": 300,
         "whole": true
     },
     "DialogueOpacity": {
         "min": 0.1,
-        "defaultValue": 0.9,
+        "defaultValue": 1,
         "max": 1
     },
     "_GameFirstShown": {

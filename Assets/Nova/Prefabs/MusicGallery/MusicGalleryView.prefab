@@ -1768,7 +1768,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 250, y: 300}
-  m_Spacing: {x: 10, y: 20}
+  m_Spacing: {x: 20, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 3
 --- !u!1 &4947839621071281588
@@ -3021,7 +3021,7 @@ PrefabInstance:
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 154.60004
+      value: 144.60004
       objectReference: {fileID: 0}
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
@@ -3150,7 +3150,7 @@ PrefabInstance:
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 154.60004
+      value: 144.60004
       objectReference: {fileID: 0}
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
@@ -4327,7 +4327,7 @@ PrefabInstance:
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 674.60004
+      value: 684.60004
       objectReference: {fileID: 0}
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
@@ -4772,7 +4772,7 @@ PrefabInstance:
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 674.60004
+      value: 684.60004
       objectReference: {fileID: 0}
     - target: {fileID: 224333044980241010, guid: 76560a599646540cd9cc8cbb1de59982,
         type: 3}
