@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace Nova
@@ -49,7 +50,8 @@ namespace Nova
 
             foreach (var entry in tmpFloatCache)
             {
-                PlayerPrefs.SetString(entry.Key, $"{entry.Value:0.###}");
+                PlayerPrefs.SetString(entry.Key,
+                    string.Format(CultureInfo.InvariantCulture, "{0:N}", entry.Value)); //$"{entry.Value:0.###}");
             }
 
             foreach (var entry in tmpIntCache)
@@ -126,7 +128,7 @@ namespace Nova
                 return defaultValue;
             }
 
-            return !float.TryParse(str, out value) ? defaultValue : value;
+            return !float.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out value) ? defaultValue : value;
         }
 
         public int GetInt(string key, int defaultValue = 0)
