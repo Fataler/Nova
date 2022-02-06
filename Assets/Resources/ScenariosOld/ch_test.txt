@@ -1,0 +1,42 @@
+﻿@<|
+label('ch_test', 'test')
+|>
+<|
+
+anim:trans_fade(cam, function()
+show(gg, 'normal', pos_gg)
+end, 2)
+
+init_scene()
+flip(gg)
+|>
+у
+
+<| move(gg, {nil, nil, nil, nil, {0, 180, 0}}) |>
+f
+
+<| anim:move(cam, {-10,0,5}) |>
+тень:: “Живым не дамся, гады!”
+
+
+<|set_box("hide")
+__Nova.dialogueBoxController.canRefreshTextProxy = false
+__Nova.dialogueBoxController.canClickForward = false
+
+anim:wait(12):action(function()
+__Nova.dialogueBoxController.canRefreshTextProxy = true -- allows to refresh text layout
+__Nova.dialogueBoxController.canClickForward = true -- allows clicking the mouse to skip the animation
+end)
+show_prefab("Cutscene_Run")
+|>
+
+<| anim:move(cam, cam_pose_right) |>
+right
+
+<| anim:move(cam, cam_pose_center) |>
+center
+
+--Впереди из очереди выбегает один, на него набрасываются демоны, хватают, тащат к краю и сбрасывают в пропасть.
+--Слышится гулкий звук и весь свет темнеет на мгновение.
+
+@<| is_end() |>

@@ -1,0 +1,49 @@
+﻿@<|
+label('sec1', 'Sec 1')
+|>
+<|
+stop(bgm)
+set_box()
+|>
+<|
+show(bg, 'back')
+|>
+
+А вот и sec
+<|
+show(bg,"room")
+show(bg1,"k1")
+|>
+А вот и sec
+
+А вот и sec
+
+<|
+notify("Все запомнят это")
+|>
+
+А вот и sec
+
+<|
+set_box("bottom","subtitle")
+|>
+asda asdasd asda
+asdasd
+
+
+asdasd
+asd
+
+А вот и sec
+<|
+show(gaotian, 'cry')
+|>
+
+
+А вот и sec
+
+<|
+new_page()
+|>
+
+@<| jump_to 'sec2' |>

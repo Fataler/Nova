@@ -1,0 +1,107 @@
+@<|
+label('ch2_old', 'Chapter 2')
+is_start()
+|>
+<|
+anim:trans_fade(cam, function()
+        show(bg, 'toilet')
+    end, 2)
+play(bgm, 'qianye')
+box_hide_show(2)
+auto_voice_off('Wang Er Gong')
+auto_voice_on('Zhang Qianye', 4)
+auto_voice_off('Sun Xiben')
+auto_voice_off('Chen Gaotian')
+|>
+Li Zhunei: "What's going on this time?"
+
+I was standing in front of the mirror in the toilet, and the sunglasses on the face of the person in the mirror were depressing.
+
+The sink faucet was on, and the sound of the flowers almost drowned out my voice.
+
+<|
+show(qianye, 'normal', pos_c, 0)
+anim:cam_punch()
+anim:vfx(cam, 'mono', {0, 0.9}, 0.3)
+sound('flap', 0.5)
+|>
+The man took off my sunglasses.
+
+I lost my sunglasses and felt dizzy because of the lights.
+
+? ? ? //Zhang Qianye: "The time has come."
+
+Li Zhunei: "..."
+
+? ? ? : "Don't you understand yet? This is the perfect condition that I finally created!"
+
+His face became hideous.
+
+? ? ? : "Mr. Hojo can't wait. We didn't send you here to let you fall in love."
+
+Li Zhunei: "I still don't understand why a father would kill his daughter."
+
+? ? ? : "Because that is his illegitimate daughter, and the general election is coming, a candidate has already started to make trouble in this regard."
+
+The man shrugged as if bored.
+
+This is his peculiar habit.
+
+? ? ? : "Hmph, forget it, you idiot can't understand these political matters."
+
+After losing my sunglasses, my eyes finally got used to the light.
+
+I saw a glass vial sitting quietly beside the sink.
+
+? ? ? :: "Add it to her milk tea and make it easier. This colorless and odorless poison might be more expensive than you."
+
+"I didn't speak or go for the vial, just stared at it."
+
+As if staring at something wonderful.
+
+His face changed and he tapped my cheek with the frames of my sunglasses.
+
+The dry clatter from the toilet was intertwined with the rushing sound of water.
+
+? ? ? :: "Don't forget how much Mr. Hojo spent to treat your eyes."
+
+? ? ? : "And your mother is now lying in the hospital run by someone."
+
+<|
+anim:cam_punch()
+anim:vfx(cam, 'mono', {0.9, 0}, 0.3)
+sound('flap', 0.5)
+|>
+I took the vial and took the sunglasses back from him.
+
+Li Zhunei: "Sorry, I didn't see it clearly just now."
+
+Li Zhunei: "You know, my eyes are not very good."
+
+? ? ? :: "Huh, idiot."
+
+<|
+hide(qianye)
+tint(qianye, 1)
+|>
+When I left the toilet, the man was still scolding at my back.
+
+? ? ? :: "Don't screw it up! Be careful with that president, she might be someone sent from the other side..."
+
+<|
+anim:trans_fade(bg, 'black')
+anim: fade_out(bgm, 2)
+anim:fade_in(bgs, 'rain')
+|>
+In the end, all sounds were covered under the sound of rushing water.
+
+<|
+anim: fade_out(bgs)
+|>
+"I'm going next..."
+@<|
+branch {
+    { dest = 'ch3', text = 'corridor' },
+    { dest = 'ch4', text = 'Student Union Room' },
+}
+|>

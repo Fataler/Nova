@@ -1,0 +1,97 @@
+﻿@<|
+label('sec2', 'Sec 2')
+|>
+<|
+stop(bgm)
+set_box('full', 'dark')
+__Nova.dialogueBoxController.canRefreshTextProxy = false
+__Nova.dialogueBoxController.canClickForward = false
+box_anchor({0.05, 0.95, -1, 0})
+anim:box_anchor({0.05, 0.95, 0, 1}, 3, {1, 0})
+box_tint({0, 0})
+anim:box_tint({0, 0.5}, 0.5 -- the dialog fades in, the background becomes translucent (alpha multiplied by 0.5), and the animation time is 0.5 seconds
+):_and():wait(50 -- wait for 10 seconds, the text scrolling animation ends
+):box_tint({0, 0}, 0.5) -- the dialog fades out, the background becomes fully transparent (alpha multiplied by 0), the animation time is 0.5 seconds
+
+text_delay(2) -- text starts appearing after 1 second
+text_duration(30) -- The typewriter animation of the text is 8 seconds, which is generally faster than the text scroll animation
+text_scroll(0) -- The initial position of the text in the dialog box is 0, which can be seen in Pos Y of UI/DialogueView/DialoguePanel/DialogueTextScrollView/Viewport/DialogueText
+anim:wait(2 -- wait for 2 seconds before the text scrolling animation, which is when the animation of the dialog box moving to the screen is almost over
+):text_scroll(0, 4800, 45, {0, 1} -- text scroll animation, initial position is 0, final position is 1300 (so that the text is outside the upper edge of the dialog), the time is 8 seconds, at the beginning Accelerate from zero without slowing down at the end
+):action(function()
+__Nova.dialogueBoxController.canRefreshTextProxy = true -- allows to refresh text layout
+__Nova.dialogueBoxController.canClickForward = true -- allows clicking the mouse to skip the animation
+end)
+|>
+1. Общие положения
+1.1 ХХХ "Hell corp" (далее — "Hell corp") предлагает умершему человеку совершившему деяние или помысел ассоциирующийся с отступлением от праведной жизни (далее - Грешинк)
+использовать свои услуги на условиях, изложенных в настоящем Соглашении Грешника (далее — "Соглашение", "СГ"). Соглашение вступает в силу с момента выражения Пользователем согласия с его условиями в порядке, предусмотренном п. 1.4 Соглашения.
+1.2. Hell corp предлагает Грешникам доступ к широкому спектру услуг, включая средства пыток, страданий, мук, боли, псигологических расстройств, моральных унижений и т. д. Все существующие на данный момент услуги, а также любое развитие их и/или добавление новых является предметом настоящего Соглашения.
+1.3. Использование услуг Hell corp регулируется настоящим Соглашением, Лицензией на оказания услуг компанией Hell corp, Политикой конфиденциальности, а также условиями использования отдельных слуг. Соглашение может быть изменено Hell corp без какого-либо специального уведомления, новая редакция Соглашения вступает в силу с момента ее размещения в ??????????, если иное не предусмотрено новой редакцией Соглашения.
+1.4. Начиная использовать какою-либо услугу/её отдельные части, либо отстояв в очереди, Грешник считается принявшим условия Соглашения в полном объеме, без всяких оговорок и исключений. В случае несогласия Грешником с какими-либо из положений Соглашения, Грешник не вправе отказаться от услуг Hell corp. В случае если Hell corp были внесены какие-либо изменения в Соглашение в порядке, предусмотренном пунктом 1.3 Соглашения, с которыми Грешник не согласен, он обязан страдать ещё больше.
+3. Общие положения об использовании
+3.1. Hell corp вправе устанавливать ограничения в использовании услуг для всех Грешников, либо для отдельных категорий Грешников (в зависимости от тяжести греха, способа смерти, пола, возроста, религии, на которые распространяются услуги и т.д.), в том числе: наличие/отсутствие отдельных услуг, сроки оказания услуг, любого другого контента, максимальное количество пыток, которые могут быть оказаны или получены одним грешником, максимальный количеством сотрудников Hell corp оказывающим услугу за период времени.
+4. Услуги Грешника
+4.1. Грешник самостоятельно не несет ответственность за соответствие выбраных услуг требованиям ?????? , включая ответственность перед третьим лицами в случаях, когда звуки и части того или иного Грешника мешают получению качественных услуг Hell corp, в том числе личные неимущественные права грешников, иные интеллектуальные права третьих лиц, и/или посягает на принадлежащие им нематериальные блага.
+5. Условия использования услуг Hell corp
+5.1. При использовании услуг Hell corp Грешник не вправе:
+5.1.1. Радоваться, посылать, передавать или любым другим способом размещать и/или распространять контент, который является позитивным, полезным, богоугодным, поощрает нравственность, демонстрирует (или является пропагандой) любви и милосердия, пропагандирует дружбу и/или равенство людей по расовому, этническому, половому, религиозному, социальному признакам, содержит комплименты в адрес каких-либо лиц или организаций, содержит элементы (или является пропагандой) мира, добра, представляет собой рекламу (или является пропагандой) котиков (в том числе под видом иных адских созданий), разъясняет порядок изготовления, применения или иного использования настольгических веществ или их аналогов, вкусняшек или иных сладостей;
+5.1.2 Чтение этого соглашения так же является услугой Hell corp
+5.1.2. соблюдать права третьих лиц, в том числе несовершеннолетних лиц и/или причинять им пользу в любой форме;
+5.1.3. выдавать себя за другого грешника или представителя организации и/или сообщества без достаточных на то прав, в том числе за сотрудников Hell corp, за <Должность1>, <Должность2>, а также применять любые другие формы и способы незаконного представительства других лиц в аду, а также вводить грешников или Hell corp в заблуждение относительно свойств и характеристик каких-либо субъектов или объектов;
+5.1.4. нарушать нормальную работу услуг Hell corp;
+5.1.5. другим образом нарушать нормы и порядки, в том числе нормы ада.
+
+<|
+set_box()
+new_page()
+|>
+
+Это всё?
+
+Нет, тут ещё много, но можешь перейти сразу к последней странице
+
+<|
+set_box('full', 'dark')
+__Nova.dialogueBoxController.canRefreshTextProxy = false
+__Nova.dialogueBoxController.canClickForward = false
+box_anchor({0.05, 0.95, -1, 0})
+anim:box_anchor({0.05, 0.95, 0, 1}, 3, {1, 0})
+box_tint({0, 0})
+anim:box_tint({0, 0.5}, 0.5 -- the dialog fades in, the background becomes translucent (alpha multiplied by 0.5), and the animation time is 0.5 seconds
+):_and():wait(32 -- wait for 10 seconds, the text scrolling animation ends
+):box_tint({0, 0}, 0.5) -- the dialog fades out, the background becomes fully transparent (alpha multiplied by 0), the animation time is 0.5 seconds
+:action(function()
+__Nova.dialogueBoxController:ClickForward()
+__Nova.dialogueBoxController:ClickForward()
+__Nova.dialogueBoxController:ClickForward()
+end)
+
+text_delay(2) -- text starts appearing after 1 second
+text_duration(20) -- The typewriter animation of the text is 8 seconds, which is generally faster than the text scroll animation
+text_scroll(0) -- The initial position of the text in the dialog box is 0, which can be seen in Pos Y of UI/DialogueView/DialoguePanel/DialogueTextScrollView/Viewport/DialogueText
+anim:wait(2 -- wait for 2 seconds before the text scrolling animation, which is when the animation of the dialog box moving to the screen is almost over
+):text_scroll(0, 2000, 30, {0, 1} -- text scroll animation, initial position is 0, final position is 1300 (so that the text is outside the upper edge of the dialog), the time is 8 seconds, at the beginning Accelerate from zero without slowing down at the end
+):action(function()
+__Nova.dialogueBoxController.canRefreshTextProxy = true -- allows to refresh text layout
+__Nova.dialogueBoxController.canClickForward = true -- allows to refresh text layout
+__Nova.dialogueBoxController:ClickForward()
+end)
+|>
+666. Отсутствие гарантий, ограничение ответственности
+666.1. Грешник использует услуги Hell corp на свой собственный риск. Услуги предоставляются как есть. Hell corp не принимает на себя никакой ответственности, в том числе за соответствие услуг целям Грешника;
+666.2. Hell corp не гарантирует, что: услуги соответствуют/будут соответствовать требованиям Грешника; услуги будут предоставляться непрерывно, быстро, надежно и без ошибок; боли, которые могут быть получены с использованием услуг, будут продолжительными и мучительными и могут использоваться для каких-либо целей или в каком-либо качестве (например, для установления и/или подтверждения каких-либо фактов); качество какого-либо продукта, услуги, информации и пр., полученных с использованием услуг, будет соответствовать ожиданиям Грешника;
+666.3. Любые информацию и/или материалы (в том числе выкрикиваемые ругательства, крики, мольбы о пощаде, какие-либо инструкции и руководства к действию и т.д.), доступ к которым Грешник получает с использованием услуг Hell corp, Грешник может использовать на свой собственный страх и риск и самостоятельно несет ответственность за возможные последствия использования указанных информации и/или материалов, в том числе за ущерб, который это может причинить Грешнику или третьим лицам, за потерю рассудка или любой другой вред;
+666.4. Все услуги, оказываемые на территории Hell corp, в том числе упавшие маслом в низ бутерброды, разбросаные по полу детали конструктора lego, графические изображения c неправильной перспективой, ужасный код, нечетырехугольне полигоны в анимированых 3д моделях, стандартные пароли от баз данных, JavaScript, звуки проведения пенопластом по стеклу, а также любой контент, размещенный на территории Hell corp, являются объектами исключительных прав Hell corp.
+
+restore dialog
+<|
+set_box()
+|>
+
+Name::111
+
+222
+
+end of test
+@<| is_end() |>

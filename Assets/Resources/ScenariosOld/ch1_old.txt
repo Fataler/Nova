@@ -1,0 +1,220 @@
+@<|
+label('ch1_old', 'Chapter 1')
+-- is_default_start()
+|>
+<|
+anim:trans_fade(cam, function()
+        show(ergong, 'normal', pos_c)
+        show(bg, 'room')
+    end, 2)
+play(bgm, 'prelude')
+play(bgs, 'rain')
+anim:volume(bgs, 0.2, 3)
+box_hide_show(2)
+auto_voice_on('Wang Er Gong', 1)
+auto_voice_on('Zhang Qianye', 1)
+auto_voice_on('Sun Xiben', 1)
+auto_voice_on('Chen Gaotian', 1)
+set_auto_voice_delay(2)
+unlock_image(bg, "back")
+show(__Nova.prefabLoader, 'FireUp', {4,4,1,0})
+|>
+Wang Ergong: Дарова!
+@<|
+branch {
+    { dest = 'sec1', text = 'knock on sisters door'},
+    { dest = 'test_branch_1', text = 'Go to New Years shrine'},
+}
+|>
+
+@<| label 'test_branch_1' |>
+
+President Ninomiya rarely frowned her delicate brows.
+
+The autumn rain seemed to put her in a bad mood.
+
+<|
+hide(ergong)
+|>
+Everyone sat in the student council room and chose to remain silent.
+
+All I could hear was the dull and repetitive sound of the rain.
+
+<|
+show(qianye, 'normal', pos_c)
+sound('flap', 0.5)
+|>
+Asano-senpai leaned back in the chair and shrugged as if bored.
+
+This is his peculiar habit.
+
+He was a thin young man with white hair who served as secretary in the student council.
+
+<|
+hide(qianye)
+|>
+The teachers and janitors will not come today, maybe there are only a few student council officers left in the whole school.
+
+Thinking of this, I can't help but sigh.
+
+<|
+show(xiben, 'normal', pos_c)
+|>
+Sun Xiben: "Did anyone bring an umbrella?"
+
+Nishimoto-san curled the ends of his hair with his fingers, and his tone was not very good.
+
+Sun Xiben was my classmate, but he refused to talk to me outside the student union.
+
+Like a willful cat, Nishimoto, with his eyes slightly raised, is cold to everyone.
+
+But if she smiles more, she must be able to fascinate many boys.
+
+<|
+hide(xiben)
+|>
+I really feel that way.
+
+Nishimoto became the student council officer because of his outstanding grades, which is why I can sit here.
+
+<|
+show(gaotian, 'normal', pos_c)
+anim: fade_out(bgs, 2)
+|>
+Chen Gaotian: "Everyone is in a hurry!"
+
+Gao Tian swayed her smooth black hair.
+
+Chen Gaotian: "We were suddenly notified that we were coming, and I didn't even explain the reason. I forgot to drink the milk tea I bought in the morning."
+
+<|
+show(ergong, 'normal', pos_l)
+anim:move(gaotian, pos_r)
+|>
+Wang Ergong: "I don't want this either. Asano said that the document was delivered."
+
+<|
+hide(gaotian)
+show(qianye, 'normal', pos_r)
+|>
+Zhang Qianye: "It turned out to be delayed because of the rainstorm. It's not my fault."
+
+Wang Ergong: "You should confirm the situation before telling me!"
+
+Zhang Qianye: "Then you can also confirm before contacting the student union officials."
+
+As usual, President Ninomiya and Asano-senpai quarreled.
+
+I heard that they all participated in the election of the student council president before I enrolled, and of course President Ninomiya was elected.
+
+Asano-senpai had no choice but to settle for the next best thing and became a secretary.
+
+Because of this, the two do not deal with each other very well, and sometimes quarrel.
+
+But watching them quarrel all the time, others may think they have a good relationship.
+
+<|
+hide(ergong)
+hide(qianye)
+anim:fade_out(bgm)
+|>
+I stared blankly at the interaction between the two.
+
+This is part of the daily life of the Student Union.
+
+<|
+show(gaotian, 'normal', pos_c)
+play(bgm, 'gaotian')
+|>
+At this time, Gao Tian took out a packaging bottle commonly found in convenience stores from the side of his schoolbag.
+
+She gave me an apologetic smile and pushed the milk tea in front of me.
+
+I looked at her silently.
+
+Gao Tian's slender fingers look like works of art made of ivory against the fluorescent lights of the classroom.
+
+Chen Gaotian: "Well, I didn't pay attention when I bought it. This milk tea has a little more weight."
+
+Chen Gaotian: "Takeuchi-kun, if you don't mind... why don't we drink together?"
+
+Chen Gaotian was my classmate.
+
+We started dating a month ago.
+
+Gao Tian was born into a single-parent family and never met his father.
+
+Therefore, Gao Tian is very sensitive and needs more care than ordinary people.
+
+Although we dated for a while, she just held my hand cautiously.
+
+We never made further intimacy moves.
+
+Even so, she seems to have felt very happy.
+
+Perhaps her mood was affected by Qiu Yu, so she made such a request.
+
+<|
+hide(gaotian)
+|>
+Everyone in the student council looked at me, and they all knew a thing or two about Gao Tian's past.
+
+I can't refuse.
+
+<|
+show(gaotian, 'normal')
+|>
+Li Zhunei: "Okay."
+
+Chen Gaotian: "I thought Takeuchi-kun would find it annoying."
+
+Gao Tian showed a pitiful smile and patted his chest lightly.
+
+Li Zhunei: "No."
+
+Chen Gaotian: "Takeuchi-kun has been talking very little, and wearing cool sunglasses, I thought it was difficult to approach at first."
+
+Chen Gaotian: "Ah, I'm not saying that Takeuchi-kun is not good. His academic performance is very good, and the work of the student union is also very good."
+
+Chen Gaotian: "Especially very gentle, really gentle."
+
+Chen Gaotian: "I'm also very considerate to a stupid girl like me..."
+
+<|
+show(gaotian, 'cry')
+|>
+Chen Gaotian: "Sure enough, Takeuchi-kun accepted my confession just because he sympathized with me."
+
+As Gao Tian spoke, the corners of his eyes were slightly moist.
+
+Gao Tian is also a very crying girl.
+
+<|
+hide(gaotian)
+|>
+My body is stiff. Because I noticed that Nishimoto and the president were staring at me with sharp eyes.
+
+Fortunately, Asano changed the subject at this time.
+
+<|
+show(qianye, 'normal', pos_c)
+|>
+Zhang Qianye: "Ah, yes, there are disposable cups in the storage room. If the milk tea is cold... it's better to drink it slowly."
+
+Asano said that while shaking his pinky finger at me.
+
+<|
+hide(qianye)
+|>
+I get it.
+
+Li Zhunei: "I'll go get a cup."
+
+I turned and left the student council room.
+
+<|
+anim:trans_fade(bg, 'black')
+anim:fade_out(bgm)
+|>
+When I go out, I can still feel eyes following my back.
+@<| jump_to 'ch2' |>

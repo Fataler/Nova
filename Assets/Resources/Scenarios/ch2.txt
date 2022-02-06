@@ -1,107 +1,109 @@
-@<|
-label('ch2', 'Chapter 2')
-is_start()
+﻿@<|
+label('ch2', 'ЧТО ЭТО БЫЛО?!')
 |>
-<|
-anim:trans_fade(cam, function()
-        show(bg, 'toilet')
-    end, 2)
-play(bgm, 'qianye')
-box_hide_show(2)
-auto_voice_off('Wang Er Gong')
-auto_voice_on('Zhang Qianye', 4)
-auto_voice_off('Sun Xiben')
-auto_voice_off('Chen Gaotian')
-|>
-Li Zhunei: "What's going on this time?"
+<| anim:move(cam, cam_pose_center) 
+set_box()|>
+Илья:: “ЧТО ЭТО БЫЛО?!”
 
-I was standing in front of the mirror in the toilet, and the sunglasses on the face of the person in the mirror were depressing.
+*Очередь продвигается вперед.*
 
-The sink faucet was on, and the sound of the flowers almost drowned out my voice.
+“Мне, конечно, всякое снилось... Но такая правдоподобная дичь первый раз.”
 
-<|
-show(qianye, 'normal', pos_c, 0)
-anim:cam_punch()
-anim:vfx(cam, 'mono', {0, 0.9}, 0.3)
-sound('flap', 0.5)
-|>
-The man took off my sunglasses.
+*Очередь продвигается вперед.*
 
-I lost my sunglasses and felt dizzy because of the lights.
+“Похоже очередь неплохо продвигается.”
 
-? ? ? //Zhang Qianye: "The time has come."
+“Лучше не дергаться и узнать, что происходит у главного. Да.”
 
-Li Zhunei: "..."
+“Как же тут жарко!”
 
-? ? ? : "Don't you understand yet? This is the perfect condition that I finally created!"
+“И пить хочется...”
 
-His face became hideous.
+*Смотрит направо. Там стоит кулер с колой.*
 
-? ? ? : "Mr. Hojo can't wait. We didn't send you here to let you fall in love."
+<| anim:move(cam, cam_pose_right)|>
+Илья:: “Ого! Вот, это сервис, моё почтение.”
 
-Li Zhunei: "I still don't understand why a father would kill his daughter."
-
-? ? ? : "Because that is his illegitimate daughter, and the general election is coming, a candidate has already started to make trouble in this regard."
-
-The man shrugged as if bored.
-
-This is his peculiar habit.
-
-? ? ? : "Hmph, forget it, you idiot can't understand these political matters."
-
-After losing my sunglasses, my eyes finally got used to the light.
-
-I saw a glass vial sitting quietly beside the sink.
-
-? ? ? :: "Add it to her milk tea and make it easier. This colorless and odorless poison might be more expensive than you."
-
-I didn't speak or go for the vial, just stared at it.
-
-As if staring at something wonderful.
-
-His face changed and he tapped my cheek with the frames of my sunglasses.
-
-The dry clatter from the toilet was intertwined with the rushing sound of water.
-
-? ? ? :: "Don't forget how much Mr. Hojo spent to treat your eyes."
-
-? ? ? : "And your mother is now lying in the hospital run by someone."
+*Берёт стакан.*
 
 <|
-anim:cam_punch()
-anim:vfx(cam, 'mono', {0.9, 0}, 0.3)
-sound('flap', 0.5)
+flip(gg)
+anim:move(gg, {10.63,nil,nil})
 |>
-I took the vial and took the sunglasses back from him.
 
-Li Zhunei: "Sorry, I didn't see it clearly just now."
+Илья:: “Тьфу ты! Без сахара! Гадость какая!”
 
-Li Zhunei: "You know, my eyes are not very good."
-
-? ? ? :: "Huh, idiot."
-
-<|
-hide(qianye)
-tint(qianye, 1)
+<| 
+anim:move(cam, cam_pose_center):move(gg, pos_gg)
 |>
-When I left the toilet, the man was still scolding at my back.
 
-? ? ? :: "Don't screw it up! Be careful with that president, she might be someone sent from the other side..."
+“А очередь то двигается“
 
-<|
-anim:trans_fade(bg, 'black')
-anim: fade_out(bgm, 2)
-anim:fade_in(bgs, 'rain')
-|>
-In the end, all sounds were covered under the sound of rushing water.
+Демон:: “Следующий!”
 
-<|
-anim: fade_out(bgs)
-|>
-I'm going next...
+<| show_reception_right() |>
+
+Демон:: “Следующий!”
+
+Илья:: “Быстро! Я было подумал тут пытают бесконечными очередями...”
+
+Ив:: “Благодарим за то, что вы выбрали нашу компанию. Мы стараемся предоставить нашим клиентам лучший сервис в кратчайшие сроки...”
+
+Илья:: “Погоди-погоди, скажи лучше, что это за место, и, что тут происходит?”
+
+<| show(iv,'click1') |>
+Ив:: “Вы умерли и  попали в ад за ваши грехи.”
+
+<| show(iv,'click2') |>
+Илья:: “Что-что?!”
+
+<| show(iv,'click1') |>
+Ив:: *тычет пальцем в клавиатуру*.
+
+<| show(iv,'click2') |>
+Ив::  “Пять тысяч двадцать три, если быть точным.”
+
+
+<| show(iv,'click1') |>
+Илья:: “Это должно быть какая-то ошибка...”
+
+<| show(iv,'click2') |>
+Ив:: “Компьютер говорит — нет.”
+
+<| show(iv,'normal') |>
+Ив:: “Благодарим за выбор нашей компании, приготовьтесь к вечным страданиям.”
+
+Илья:: “НЕТ! Я с этим не согласен!Кто ты вообще такой, чтобы решать такие вещи?!”
+
+Илья:: *щурится и всматривается в табличку с именем.*
+
+Илья:: “А? Иван?”
+
+Ив:: “Ив. Ан.”
+
+Илья:: “Иван и есть Иван.”
+
+Ив:: “Ив.”
+
+Ив:: “Ан.”
+
+@<| label 'begin_loop' |>
 @<|
 branch {
-    { dest = 'ch3', text = 'corridor' },
-    { dest = 'ch4', text = 'Student Union Room' },
+{ dest = 'ivan', text = 'Иван?'},
+{ dest = 'iv_an', text = 'Ив Ан'},
 }
 |>
+
+@<| label 'ivan' |>
+Илья:: “Иван?”
+
+Ив:: “Ив.”
+
+Ив:: “Ан.”
+
+@<| jump_to 'begin_loop' |>
+@<| label 'iv_an' |>
+
+<| notify("Ив Ан запомнит это")|>
+@<| jump_to 'ch3' |>

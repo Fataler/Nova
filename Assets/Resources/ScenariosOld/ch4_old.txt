@@ -1,0 +1,228 @@
+@<|
+label('ch4_old', 'final chapter')
+|>
+<|
+anim:trans_fade(cam, function()
+        show(ergong, 'normal', pos_c)
+        show(bg, 'room')
+    end)
+play(bgm, 'prelude')
+box_hide_show()
+auto_voice_on('Wang Er Gong', 4)
+auto_voice_on('Zhang Qianye', 14)
+auto_voice_on('Sun Xiben', 9)
+auto_voice_on('Chen Gaotian', 11)
+set_auto_voice_delay(1)
+|>
+Wang Ergong: "Huh? Why does it take so long to get a cup?"
+
+The president asked suspiciously.
+
+Li Zhunei: "Sorry, the light is dark there."
+
+I pushed my sunglasses. The president reluctantly accepted this excuse.
+
+<|
+hide(ergong)
+|>
+I put the cup on the table and slowly poured out the milk tea.
+
+I poured slowly on purpose.
+
+But there is always a time when the cup is full.
+
+<|
+show(gaotian, 'normal', pos_l)
+|>
+Gao Tian looked very happy, and I gave her a stiff smile back.
+
+<|
+hide(gaotian)
+show(qianye, 'normal', pos_r)
+|>
+At this time, out of the corner of my eye, I saw Asano's face change.
+
+what happened?
+@<|
+branch {
+    { dest = 'ch4_true', mode = 'jump', cond = 'v_flag_xiben' },
+    { dest = 'ch4_bad', mode = 'jump' },
+}
+|>
+
+@<|
+label('ch4_true', 'final chapter')
+|>
+<|
+hide(qianye)
+show(xiben, 'normal', pos_r)
+|>
+Sun Xiben: "I want to drink too."
+
+Nishimoto stood beside me at some point and took a cup from my arms.
+
+The ribbons in her hair brushed the wings of my nose as she bent down.
+
+<|
+show(gaotian, 'normal', pos_l)
+|>
+Chen Gaotian: "...Student Nishimoto..."
+
+Gao Tian showed a bewildered expression, looking like an injured deer.
+
+<|
+hide(gaotian)
+|>
+Nishimoto's hand paused, but she pretended not to see it, and still poured the milk tea into the cup.
+
+<|
+show(ergong, 'normal', pos_l)
+|>
+Nishimoto kept out of contact with others in this high school, and her abnormality aroused the vigilance of the president.
+
+The president must have missed my stiff expression. She was looking back and forth between me, Nishimoto and Koten.
+
+Asano wanted to say something, but was seized by the president.
+
+Wang Ergong: "It doesn't matter, milk tea is enough."
+
+Wang Ergong: "Maybe Nishimoto is also a little thirsty."
+
+<|
+hide(xiben)
+show(qianye, 'normal', pos_r)
+|>
+Zhang Qianye: "But, but... Takeuchi and Gaotian are not..."
+
+Wang Ergong: "Everyone is a friend, what does it matter?"
+
+As the president spoke, he randomly scrambled the cups on the table.
+
+The three disposable cups are filled with milky white milk tea, and I can no longer tell the difference between you and me.
+
+Asano glanced secretly at the empty glass bottle I threw into the garbage, showing a desperate expression.
+
+<|
+hide(qianye)
+|>
+Wang Ergong: "Takeuchi-kun, why don't you invite me first. Let's drink together. Gao Tian and Nishimoto have no opinion, right?"
+
+<|
+hide(ergong)
+anim:fade_out(bgm)
+|>
+have opinions.
+
+<|
+show(gaotian, 'cry', pos_l)
+|>
+Gao Tian not only had an opinion, her tears were about to pour out.
+
+But she was too anxious to express what she meant.
+
+<|
+hide(gaotian)
+show(xiben, 'normal', pos_r)
+|>
+Nishimoto stood still, as if he had lost his soul.
+
+<|
+hide(xiben)
+show(ergong, 'normal', pos_l)
+|>
+The student council president looked at me with a smile, as if she had guessed something.
+
+<|
+hide(ergong)
+show(qianye, 'normal', pos_r)
+|>
+Asano looked at me too.
+
+<|
+anim_persist_begin()
+hide(qianye)
+play(bgm, 'final', 0.1)
+anim_persist:volume(bgm, 0.5, 6.4)
+|>
+Time seems to freeze at this moment.
+
+The raindrops outside also seemed to be stagnant in the air.
+
+<|
+local entry = anim:wait_all(anim_persist)
+entry:vfx(cam, 'mono', {0, 0.9}, 0.5)
+entry:trans2(cam, nil, {'radial_blur', 1}, 0.1, { _Size = 200 }, 0.4)
+|>
+I took off my sunglasses with trembling hands—
+
+<|
+anim_persist_end()
+|>
+In an instant, the world turned grey.
+
+It's a rare disease that can take away the joy of life.
+
+A world without color would be hopeless.
+
+People with this disease commit suicide twice as often as dying from the disease.
+
+<|
+anim:vfx(cam, {'colorless', 2}, {0, 1})
+|>
+But on the contrary, some originally colorless and transparent substances will show wonderful colors.
+
+It is not a color that normal people can understand, just like a person who is born blind cannot understand darkness.
+
+<|
+anim:trans_down(bg, 'black', 0.5)
+sound('flap')
+|>
+I drank that cup of milk tea in one gulp - I've seen this color once in the toilet.
+
+Then, I put down the cup.
+
+All the things around me, all the sounds in my ears can no longer restrain me.
+
+Freed, I was too weak to move.
+
+<|
+anim_persist_begin()
+anim_persist:trans_up(bg, 'rain', 0.5
+    ):vfx(cam, {'color', 1}, {0, 1}, 10, { _ColorMul = 3 })
+|>
+I tried my best to look out the window.
+
+The scenery outside the window was gray and white, like an old photo.
+
+I stared at the endlessly falling raindrops.
+
+<|
+anim:wait_all(anim_persist)
+|>
+In my eyes, what should have been colorless raindrops also shone with the brilliance of the rainbow.
+
+<|
+anim_persist_end()
+anim:trans_fade(cam, function()
+        show(bg, 'black')
+        vfx(cam, nil)
+        vfx(cam, {nil, 2})
+    end, 2
+    ):trans_fade(bg, 'staff', 2)
+anim: fade_out(bgm, 5)
+set_box('hide')
+stop_auto_ff()
+|>
+<align="center">End</align>
+@<| is_end 'true_end' |>
+
+@<|
+label('ch4_bad', 'final chapter')
+|>
+Because you didn't get Nishimoto's flag, the plot can't go on...
+
+<|
+set_box('center', 'center')
+|>
+BAD END
+@<| is_end 'bad_end' |>
