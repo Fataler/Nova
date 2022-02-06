@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Nova;
 
 // Cartoon FX  - (c) 2015 Jean Moreno
 
@@ -12,9 +13,11 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 {
 	// If true, deactivate the object instead of destroying it
 	public bool OnlyDeactivate;
+    private PrefabLoader prefabLoader;
 	
 	void OnEnable()
-	{
+    {
+        prefabLoader = GetComponentInParent<PrefabLoader>();
 		StartCoroutine("CheckIfAlive");
 	}
 	
@@ -27,16 +30,7 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 			yield return new WaitForSeconds(0.5f);
 			if(!ps.IsAlive(true))
 			{
-				if(OnlyDeactivate)
-				{
-					#if UNITY_3_5
-						this.gameObject.SetActiveRecursively(false);
-					#else
-						this.gameObject.SetActive(false);
-					#endif
-				}
-				else
-					GameObject.Destroy(this.gameObject);
+                prefabLoader.ClearPrefab();
 				break;
 			}
 		}

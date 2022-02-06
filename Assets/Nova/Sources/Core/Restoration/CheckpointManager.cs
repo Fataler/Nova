@@ -164,7 +164,7 @@ namespace Nova
 
         private void Start()
         {
-            savePathBase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VNGAMEJAM4/FDIH/Save", saveFolder);
+            savePathBase = Path.Combine(Application.persistentDataPath, "Save", saveFolder);
             globalSavePath = Path.Combine(savePathBase, "global.nsav");
             Directory.CreateDirectory(savePathBase);
 

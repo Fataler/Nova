@@ -10,9 +10,9 @@ namespace Nova.Editor
         public static void ClearSaveData()
         {
             var saveDir = new DirectoryInfo(Application.persistentDataPath + "/Save/");
-            foreach (var file in saveDir.GetFiles())
+            foreach (var file in saveDir.GetDirectories())
             {
-                file.Delete();
+                file.Delete(true);
             }
         }
 
