@@ -21,12 +21,12 @@ namespace Nova
         public readonly NodeHistoryEntry nodeHistoryEntry;
         public readonly int dialogueIndex;
         public readonly DialogueDisplayData displayData;
-        public readonly Dictionary<string, VoiceEntry> voicesNextDialogue;
+        public readonly IReadOnlyDictionary<string, VoiceEntry> voicesNextDialogue;
         public readonly bool isReached;
         public readonly bool isReachedAnyHistory;
 
         public DialogueChangedData(NodeHistoryEntry nodeHistoryEntry, int dialogueIndex,
-            DialogueDisplayData displayData, Dictionary<string, VoiceEntry> voicesNextDialogue, bool isReached,
+            DialogueDisplayData displayData, IReadOnlyDictionary<string, VoiceEntry> voicesNextDialogue, bool isReached,
             bool isReachedAnyHistory)
         {
             this.nodeHistoryEntry = nodeHistoryEntry;
@@ -59,11 +59,12 @@ namespace Nova
         [ExportCustomType]
         public class Selection
         {
-            public readonly Dictionary<SystemLanguage, string> texts;
+            public readonly IReadOnlyDictionary<SystemLanguage, string> texts;
             public readonly BranchImageInformation imageInfo;
             public readonly bool active;
 
-            public Selection(Dictionary<SystemLanguage, string> texts, BranchImageInformation imageInfo, bool active)
+            public Selection(IReadOnlyDictionary<SystemLanguage, string> texts, BranchImageInformation imageInfo,
+                bool active)
             {
                 this.texts = texts;
                 this.imageInfo = imageInfo;
@@ -77,9 +78,9 @@ namespace Nova
                 }, imageInfo, active) { }
         }
 
-        public readonly List<Selection> selections;
+        public readonly IReadOnlyList<Selection> selections;
 
-        public SelectionOccursData(List<Selection> selections)
+        public SelectionOccursData(IReadOnlyList<Selection> selections)
         {
             this.selections = selections;
         }
@@ -145,7 +146,7 @@ namespace Nova
         /// </summary>
         public void ReloadScripts()
         {
-            LuaRuntime.Instance.InitRequires();
+            LuaRuntime.Instance.Reset();
             scriptLoader.ForceInit(scriptPath);
             flowChartTree = scriptLoader.GetFlowChartTree();
         }
@@ -303,8 +304,12 @@ namespace Nova
                 return;
             }
 
-            StopCoroutine(actionCoroutine);
-            actionCoroutine = null;
+            if (actionCoroutine != null)
+            {
+                StopCoroutine(actionCoroutine);
+                actionCoroutine = null;
+            }
+
             DialogueEntry.StopActionCoroutine();
 
             ResetActionContext();
@@ -434,10 +439,8 @@ namespace Nova
             while (actionPauseLock.isLocked) yield return null;
 
             // Everything that makes game state pause has ended, so change dialogue
-            // TODO: use advancedDialogueHelper to override dialogue
-            // The game author should define overriding dialogues for each locale
             dialogueChanged.Invoke(new DialogueChangedData(nodeHistory.Last(), currentIndex,
-                currentDialogueEntry.displayData, new Dictionary<string, VoiceEntry>(voicesNextDialogue),
+                currentDialogueEntry.GetDisplayData(), new Dictionary<string, VoiceEntry>(voicesNextDialogue),
                 isReached, isReachedAnyHistory));
 
             voicesNextDialogue.Clear();
@@ -547,7 +550,7 @@ namespace Nova
                 restrainCheckpointNum--;
             }
 
-            // As the action for this dialogue will be rerun, it's fine to just reset _forceCheckpoint to false
+            // As the action for this dialogue will be rerun, it's fine to just reset forceCheckpoint to false
             forceCheckpoint = false;
         }
 
@@ -643,6 +646,7 @@ namespace Nova
         /// <param name="startNode">The node from where the game starts</param>
         private void GameStart(FlowChartNode startNode)
         {
+            CancelAction();
             ResetGameState();
             MoveToNextNode(startNode, () => { });
         }
@@ -664,12 +668,17 @@ namespace Nova
             GameStart(flowChartTree.GetStartNode(startName));
         }
 
-        public List<string> GetAllStartNodeNames()
+        public FlowChartNode GetNode(string name)
+        {
+            return flowChartTree.GetNode(name);
+        }
+
+        public IReadOnlyList<string> GetAllStartNodeNames()
         {
             return flowChartTree.GetAllStartNodeNames();
         }
 
-        public List<string> GetAllUnlockedStartNodeNames()
+        public IReadOnlyList<string> GetAllUnlockedStartNodeNames()
         {
             return flowChartTree.GetAllUnlockedStartNodeNames();
         }
@@ -754,7 +763,7 @@ namespace Nova
             }
         }
 
-        public void RaiseSelection(List<SelectionOccursData.Selection> selections)
+        public void RaiseSelection(IReadOnlyList<SelectionOccursData.Selection> selections)
         {
             selectionOccurs.Invoke(new SelectionOccursData(selections));
         }
@@ -918,8 +927,7 @@ namespace Nova
             {
                 try
                 {
-                    var restoreData = entry.restoreDatas[pair.Key];
-                    pair.Value.Restore(restoreData);
+                    pair.Value.Restore(entry.restoreDatas[pair.Key]);
                 }
                 catch (KeyNotFoundException)
                 {
@@ -1008,6 +1016,7 @@ namespace Nova
                         isRestoring = false;
                     }
 
+                    // Make sure there is no blocking action running
                     NovaAnimation.StopAll(AnimationType.PerDialogue | AnimationType.Text);
                     Step();
 
@@ -1048,6 +1057,6 @@ namespace Nova
         #endregion
 
         private string debugState =>
-            $"{currentNode.name} {currentIndex} {variables.hash} | {stepNumFromLastCheckpoint} {restrainCheckpointNum} {forceCheckpoint} {shouldSaveCheckpoint}";
+            $"{currentNode?.name} {currentIndex} {variables.hash} | {stepNumFromLastCheckpoint} {restrainCheckpointNum} {forceCheckpoint} {shouldSaveCheckpoint}";
     }
 }

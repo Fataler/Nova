@@ -100,8 +100,8 @@ namespace Nova
 
         private const string DateTimeFormat = "yyyy/MM/dd  HH:mm";
 
-        private string currentNodeName;
-        private string currentDialogueText;
+        private FlowChartNode currentNode;
+        private DialogueDisplayData currentDialogue;
 
         protected override void Awake()
         {
@@ -164,6 +164,8 @@ namespace Nova
         protected override void Start()
         {
             base.Start();
+
+            checkpointManager.Init();
             previewEntry = myPanel.transform.Find("Background/Left/SaveEntry").GetComponent<SaveEntryController>();
             previewEntry.InitAsPreview(null, Hide);
             ShowPage();
@@ -185,12 +187,12 @@ namespace Nova
 
         private void OnNodeChanged(NodeChangedData nodeChangedData)
         {
-            currentNodeName = I18nHelper.NodeNames.Get(nodeChangedData.nodeHistoryEntry.Key);
+            currentNode = gameState.GetNode(nodeChangedData.nodeHistoryEntry.Key);
         }
 
         private void OnDialogueChanged(DialogueChangedData dialogueChangedData)
         {
-            currentDialogueText = dialogueChangedData.displayData.FormatNameDialogue();
+            currentDialogue = dialogueChangedData.displayData;
         }
 
         #region Show and hide
@@ -234,8 +236,8 @@ namespace Nova
             {
                 // Cannot SetActive(false), otherwise layout will break
                 saveButtonCanvasGroup.alpha = 0.0f;
-                currentNodeName = "";
-                currentDialogueText = "";
+                currentNode = null;
+                currentDialogue = null;
             }
             else
             {
@@ -256,6 +258,7 @@ namespace Nova
             selectedSaveID = -1;
 
             ShowPage();
+
             base.Show();
         }
 
@@ -307,7 +310,6 @@ namespace Nova
         private void _saveBookmark(int saveID)
         {
             var bookmark = gameState.GetBookmark();
-            bookmark.description = currentDialogueText;
             bookmark.screenshot = screenSprite.texture;
             DeleteCachedThumbnailSprite(saveID);
             checkpointManager.SaveBookmark(saveID, bookmark);
@@ -380,7 +382,6 @@ namespace Nova
         private void _autoSaveBookmark(int beginSaveID, string tagText)
         {
             var bookmark = gameState.GetBookmark();
-            bookmark.description = currentDialogueText;
             var texture = ScreenCapturer.GetBookmarkThumbnailTexture();
             bookmark.screenshot = texture;
 
@@ -565,8 +566,8 @@ namespace Nova
             ShowPreview(screenSprite, I18n.__(
                 "bookmark.summary",
                 fromTitle ? "" : DateTime.Now.ToString(DateTimeFormat),
-                currentNodeName,
-                currentDialogueText
+                currentNode != null ? I18n.__(currentNode.displayNames) : "",
+                currentDialogue != null ? currentDialogue.FormatNameDialogue() : ""
             ));
         }
 
@@ -576,11 +577,19 @@ namespace Nova
             {
                 Bookmark bookmark = checkpointManager[saveID];
                 var nodeName = checkpointManager.GetLastNodeName(bookmark.nodeHistoryHash);
+                var node = gameState.GetNode(nodeName);
+                var displayName = I18n.__(node.displayNames);
+                var description = bookmark.description;
+                if (string.IsNullOrEmpty(description))
+                {
+                    description = node.GetDialogueEntryAt(bookmark.dialogueIndex).GetDisplayData().FormatNameDialogue();
+                }
+
                 ShowPreview(GetThumbnailSprite(saveID), I18n.__(
                     "bookmark.summary",
                     checkpointManager.saveSlotsMetadata[saveID].modifiedTime.ToString(DateTimeFormat),
-                    I18nHelper.NodeNames.Get(nodeName),
-                    bookmark.description
+                    displayName,
+                    description
                 ));
             }
             catch (Exception e)
@@ -722,7 +731,7 @@ namespace Nova
                     {
                         Bookmark bookmark = checkpointManager[saveID];
                         var nodeName = checkpointManager.GetLastNodeName(bookmark.nodeHistoryHash);
-                        newHeaderText = I18nHelper.NodeNames.Get(nodeName);
+                        newHeaderText = I18n.__(gameState.GetNode(nodeName).displayNames);
                         newFooterText = bookmark.creationTime.ToString(DateTimeFormat);
                         newThumbnailSprite = GetThumbnailSprite(saveID);
                         onEditButtonClicked = null;

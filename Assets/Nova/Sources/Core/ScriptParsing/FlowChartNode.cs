@@ -1,7 +1,6 @@
 ﻿using Nova.Exceptions;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Nova
 {
@@ -23,7 +22,6 @@ namespace Nova
         /// <summary>
         /// Internally used name of the flow chart node.
         /// The name should be unique for each node.
-        /// Localized names are stored in I18nHelper.NodeNames
         /// </summary>
         public readonly string name;
 
@@ -49,17 +47,17 @@ namespace Nova
 
         private void CheckFreeze()
         {
-            Assert.IsFalse(isFrozen, "Nova: Cannot modify a flow chart node when it is frozen.");
+            Utils.RuntimeAssert(!isFrozen, "Cannot modify a flow chart node when it is frozen.");
         }
 
         private FlowChartNodeType _type = FlowChartNodeType.Normal;
 
-        /// <value>
-        /// Type of this flow chart node. The value of this field is default to be normal
-        /// </value>
+        /// <summary>
+        /// Type of this flow chart node. Defaults to Normal.
+        /// </summary>
         /// <remarks>
-        /// The type of a node is always readable but only settable before its type if frozen.
-        /// A flow chart tree should freeze all its nodes after construction.
+        /// The type of a node is always gettable but only settable before it is frozen.
+        /// A flow chart tree should freeze all its nodes after the construction.
         /// </remarks>
         public FlowChartNodeType type
         {
@@ -71,28 +69,44 @@ namespace Nova
             }
         }
 
+        #region Displayed names
+
+        /// <summary>
+        /// Displayed node name in each locale.
+        /// </summary>
+        private readonly Dictionary<SystemLanguage, string> _displayNames = new Dictionary<SystemLanguage, string>();
+        public IReadOnlyDictionary<SystemLanguage, string> displayNames => _displayNames;
+
+        public void AddLocalizedName(SystemLanguage locale, string displayName)
+        {
+            CheckFreeze();
+            _displayNames[locale] = displayName;
+        }
+
+        #endregion
+
         #region Dialogue entries
 
-        /// <value>
-        /// Dialogue entries in this node
-        /// </value>
-        private List<DialogueEntry> dialogueEntries = new List<DialogueEntry>();
+        /// <summary>
+        /// Dialogue entries in this node.
+        /// </summary>
+        private IReadOnlyList<DialogueEntry> dialogueEntries = new List<DialogueEntry>();
 
         public int dialogueEntryCount => dialogueEntries.Count;
 
-        public void SetDialogueEntries(List<DialogueEntry> entries)
+        public void SetDialogueEntries(IReadOnlyList<DialogueEntry> entries)
         {
             CheckFreeze();
             dialogueEntries = entries;
         }
 
-        public void AddLocaleForDialogueEntries(SystemLanguage locale, IReadOnlyList<LocalizedDialogueEntry> entries)
+        public void AddLocalizedDialogueEntries(SystemLanguage locale, IReadOnlyList<LocalizedDialogueEntry> entries)
         {
-            Assert.IsTrue(entries.Count == dialogueEntries.Count, "Nova: Localized dialogue entry count differs.");
+            Utils.RuntimeAssert(entries.Count == dialogueEntries.Count, "Localized dialogue entry count differs.");
             CheckFreeze();
             for (int i = 0; i < entries.Count; ++i)
             {
-                dialogueEntries[i].AddLocale(locale, entries[i]);
+                dialogueEntries[i].AddLocalized(locale, entries[i]);
             }
         }
 

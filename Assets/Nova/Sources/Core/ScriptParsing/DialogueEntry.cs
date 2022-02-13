@@ -2,6 +2,7 @@
 using Nova.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Nova
@@ -13,19 +14,16 @@ namespace Nova
     }
 
     /// <summary>
-    /// Dialogue entry without action. Used for serialization.
+    /// Dialogue entry without actions. Used for serialization.
     /// </summary>
     [Serializable]
     public class DialogueDisplayData
     {
-        /// <value>Displayed character name for each locale.</value>
-        public readonly Dictionary<SystemLanguage, string> displayNames;
+        public readonly IReadOnlyDictionary<SystemLanguage, string> displayNames;
+        public readonly IReadOnlyDictionary<SystemLanguage, string> dialogues;
 
-        /// <value>Displayed dialogue for each locale.</value>
-        public readonly Dictionary<SystemLanguage, string> dialogues;
-
-        public DialogueDisplayData(Dictionary<SystemLanguage, string> displayNames,
-            Dictionary<SystemLanguage, string> dialogues)
+        public DialogueDisplayData(IReadOnlyDictionary<SystemLanguage, string> displayNames,
+            IReadOnlyDictionary<SystemLanguage, string> dialogues)
         {
             this.displayNames = displayNames;
             this.dialogues = dialogues;
@@ -47,44 +45,73 @@ namespace Nova
     }
 
     /// <summary>
-    /// A dialogue entry contains the character name and the dialogue in each locale, and the action to execute.
+    /// A dialogue entry contains the character name and the dialogue text in each locale, and the actions to execute.
     /// </summary>
     public class DialogueEntry
     {
-        /// <value>Internally used character name.</value>
+        /// <summary>
+        /// Internally used character name.
+        /// </summary>
         public readonly string characterName;
 
-        public readonly DialogueDisplayData displayData;
+        /// <summary>
+        /// Displayed character name in each locale, before string interpolation.
+        /// </summary>
+        private readonly Dictionary<SystemLanguage, string> displayNames;
 
-        public Dictionary<SystemLanguage, string> displayNames => displayData.displayNames;
-        public Dictionary<SystemLanguage, string> dialogues => displayData.dialogues;
+        /// <summary>
+        /// Displayed dialogue text in each locale, before string interpolation.
+        /// </summary>
+        private readonly Dictionary<SystemLanguage, string> dialogues;
 
-        /// <value>
-        /// The action to execute when the game processes to this point.
-        /// </value>
+        /// <summary>
+        /// The actions to execute when the game processes to this point.
+        /// </summary>
         private readonly Dictionary<DialogueActionStage, LuaFunction> actions;
 
         public DialogueEntry(string characterName, string displayName, string dialogue,
             Dictionary<DialogueActionStage, LuaFunction> actions)
         {
             this.characterName = characterName;
-            var displayNames = new Dictionary<SystemLanguage, string> { [I18n.DefaultLocale] = displayName };
-            var dialogues = new Dictionary<SystemLanguage, string> { [I18n.DefaultLocale] = dialogue };
-            displayData = new DialogueDisplayData(displayNames, dialogues);
+            displayNames = new Dictionary<SystemLanguage, string> { [I18n.DefaultLocale] = displayName };
+            dialogues = new Dictionary<SystemLanguage, string> { [I18n.DefaultLocale] = dialogue };
             this.actions = actions;
         }
 
-        public DialogueEntry(string characterName, string displayName, string dialogue, LuaFunction action)
-            : this(characterName, displayName, dialogue, new Dictionary<DialogueActionStage, LuaFunction>
-            {
-                [DialogueActionStage.Default] = action
-            })
-        { }
-
-        public void AddLocale(SystemLanguage locale, LocalizedDialogueEntry entry)
+        public void AddLocalized(SystemLanguage locale, LocalizedDialogueEntry entry)
         {
             displayNames[locale] = entry.displayName;
             dialogues[locale] = entry.dialogue;
+        }
+
+        // DialogueDisplayData is cached only if there is no need to interpolate
+        private DialogueDisplayData cachedDisplayData;
+
+        public DialogueDisplayData GetDisplayData()
+        {
+            if (cachedDisplayData != null)
+            {
+                return cachedDisplayData;
+            }
+
+            LuaRuntime.Instance.GetFunction("reset_text_need_interpolate").Call();
+
+            var interpolatedDisplayNames = displayNames.ToDictionary(x => x.Key, x => InterpolateText(x.Value));
+            var interpolatedDialogues = dialogues.ToDictionary(x => x.Key, x => InterpolateText(x.Value));
+
+            DialogueDisplayData displayData;
+            if (LuaRuntime.Instance.GetFunction("get_text_need_interpolate").Invoke<bool>())
+            {
+                displayData = new DialogueDisplayData(interpolatedDisplayNames, interpolatedDialogues);
+            }
+            else
+            {
+                // Release references of interpolatedDisplayNames and interpolatedDialogues
+                displayData = new DialogueDisplayData(displayNames, dialogues);
+                cachedDisplayData = displayData;
+            }
+
+            return displayData;
         }
 
         /// <summary>
@@ -121,7 +148,17 @@ end)";
 
         public static void StopActionCoroutine()
         {
-            LuaRuntime.Instance.DoString($"coroutine.stop({ActionCoroutineName})");
+            LuaRuntime.Instance.GetFunction("coroutine.stop").Call(ActionCoroutineName);
+        }
+
+        public static string InterpolateText(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                return s;
+            }
+
+            return LuaRuntime.Instance.GetFunction("interpolate_text").Invoke<string, string>(s);
         }
     }
 }

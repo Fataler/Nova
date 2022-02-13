@@ -26,6 +26,10 @@ function override_text(to)
     __Nova.advancedDialogueHelper:Override(to)
 end
 
+-- automatically execute the next dialogue (lazy only)
+function fall_through()
+    __Nova.advancedDialogueHelper:FallThrough()
+
 function show_prefab(prefab, coord)
     show(__Nova.prefabLoader, prefab, coord)
 end

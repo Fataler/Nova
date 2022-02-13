@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Nova
 {
@@ -69,8 +68,9 @@ namespace Nova
 
         private void InitOnlyIncludedNames()
         {
-            onlyIncludedNames = new HashSet<string>(LuaRuntime.Instance
-                .DoString<LuaTable>("return only_included_scenario_names").ToArray().Cast<string>());
+            var table = LuaRuntime.Instance.GetTable("only_included_scenario_names");
+            onlyIncludedNames = new HashSet<string>(table.ToArray().Cast<string>());
+            table.Dispose();
         }
 
         public void ForceInit(string path)
@@ -132,7 +132,7 @@ namespace Nova
 
         private void CheckInit()
         {
-            Assert.IsTrue(inited, "Nova: ScriptLoader methods should be called after Init().");
+            Utils.RuntimeAssert(inited, "ScriptLoader methods should be called after Init().");
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Nova
         /// Split blocks at separator and eager execution blocks. All chunks in the result contain
         /// at least one ParsedBlock.
         /// </summary>
-        private static List<Chunk> DivideBlocksToChunks(IReadOnlyList<ParsedBlock> blocks)
+        private static IReadOnlyList<Chunk> DivideBlocksToChunks(IReadOnlyList<ParsedBlock> blocks)
         {
             var res = new List<Chunk>();
             var chunk = new Chunk();
@@ -200,7 +200,7 @@ namespace Nova
         private void ParseScript(string text)
         {
             hiddenCharacterNames.Clear();
-            LuaRuntime.Instance.DoString("action_new_file()");
+            LuaRuntime.Instance.GetFunction("action_new_file").Call();
 
             var blocks = Parser.Parse(text).blocks;
 
@@ -248,7 +248,7 @@ namespace Nova
             else
             {
                 var entries = ScriptDialogueEntryParser.ParseLocalizedDialogueEntries(chunks);
-                currentNode.AddLocaleForDialogueEntries(stateLocale, entries);
+                currentNode.AddLocalizedDialogueEntries(stateLocale, entries);
             }
         }
 
@@ -285,8 +285,9 @@ namespace Nova
         /// will not be registered as a lazy binding link.
         /// This method is designed to be called externally by scripts.
         /// </summary>
-        /// <param name="name">Name of the new node</param>
-        public void RegisterNewNode(string name)
+        /// <param name="name">Internal name of the new node</param>
+        /// <param name="displayName">Displayed name of the new node</param>
+        public void RegisterNewNode(string name, string displayName)
         {
             var nextNode = new FlowChartNode(name);
             if (currentNode != null && currentNode.type == FlowChartNodeType.Normal)
@@ -297,11 +298,14 @@ namespace Nova
             currentNode = nextNode;
 
             flowChartTree.AddNode(currentNode);
+
+            currentNode.AddLocalizedName(stateLocale, displayName);
         }
 
-        public void BeginAddLocaleForNode(string name)
+        public void AddLocalizedNode(string name, string displayName)
         {
             currentNode = flowChartTree.GetNode(name);
+            currentNode.AddLocalizedName(stateLocale, displayName);
         }
 
         /// <summary>
@@ -370,7 +374,7 @@ namespace Nova
                 new BranchInformation(name, text, imageInfo, mode, condition)));
         }
 
-        public void AddLocaleForBranch(string name, string destination, string text)
+        public void AddLocalizedBranch(string name, string destination, string text)
         {
             var branchInfo = lazyBindingLinks.Find(x =>
                     x.from.name == currentNode.name && x.destination == destination && x.branchInfo.name == name)
@@ -381,7 +385,7 @@ namespace Nova
                     $"Nova: branchInfo not found. from: {currentNode.name}, destination: {destination}, branchInfo: {name}");
             }
 
-            branchInfo.AddLocale(stateLocale, text);
+            branchInfo.AddLocalizedText(stateLocale, text);
         }
 
         /// <summary>

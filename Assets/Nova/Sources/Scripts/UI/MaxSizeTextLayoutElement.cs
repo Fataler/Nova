@@ -102,6 +102,7 @@ namespace Nova
                 return;
             LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
         }
+        
 #if UNITY_EDITOR
         protected override void OnValidate()
         {

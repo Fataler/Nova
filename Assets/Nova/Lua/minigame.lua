@@ -1,8 +1,12 @@
-local function wait_fence()
+function wait_fence()
     while __Nova.coroutineHelper.fence == nil do
         coroutine.step()
     end
     return __Nova.coroutineHelper:TakeFence()
+end
+
+function signal_fence(value)
+    __Nova.coroutineHelper:SignalFence(value)
 end
 
 local function check_lazy_not_before(name)
@@ -48,4 +52,5 @@ function load_prefab(prefab_loader, prefab_name, coord)
     __Nova.coroutineHelper:StopInterrupt()
     input_on()
 end
-Nova.ScriptDialogueEntryParser.AddCheckpointPattern('minigame', 'ensure_ckpt_on_next_dialogue')
+
+Nova.ScriptDialogueEntryParser.AddCheckpointNextPattern('minigame', 'ensure_ckpt_on_next_dialogue')

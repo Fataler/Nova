@@ -44,7 +44,9 @@ namespace Nova
         /// </summary>
         public readonly string name;
 
-        public readonly Dictionary<SystemLanguage, string> texts;
+        private readonly Dictionary<SystemLanguage, string> _texts;
+        public IReadOnlyDictionary<SystemLanguage, string> texts => _texts;
+
         public readonly BranchImageInformation imageInfo;
         public readonly BranchMode mode;
         public readonly LuaFunction condition;
@@ -66,16 +68,15 @@ namespace Nova
             LuaFunction condition)
         {
             this.name = name;
-            var texts = new Dictionary<SystemLanguage, string> { [I18n.DefaultLocale] = text };
-            this.texts = texts;
+            _texts = new Dictionary<SystemLanguage, string> { [I18n.DefaultLocale] = text };
             this.imageInfo = imageInfo;
             this.mode = mode;
             this.condition = condition;
         }
 
-        public void AddLocale(SystemLanguage locale, string text)
+        public void AddLocalizedText(SystemLanguage locale, string text)
         {
-            texts[locale] = text;
+            _texts[locale] = text;
         }
 
         /// <summary>

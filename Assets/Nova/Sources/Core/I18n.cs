@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
@@ -45,6 +46,26 @@ namespace Nova
                 _currentLocale = value;
                 LocaleChanged.Invoke();
             }
+        }
+
+        // On Windows and maybe other platforms, Application.systemLanguage returns the region rather than the language,
+        // so we use CultureInfo.CurrentCulture if possible
+        private static SystemLanguage GetSystemLocale()
+        {
+            try
+            {
+                var cultureInfo = CultureInfo.CurrentCulture;
+                if (cultureInfo.Name.StartsWith("zh-"))
+                {
+                    return SystemLanguage.ChineseSimplified;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"Nova: Failed to get CurrentUICulture: {ex.Message}");
+            }
+
+            return Application.systemLanguage;
         }
 
         private static SystemLanguage FallbackLocale(SystemLanguage locale)
@@ -154,7 +175,7 @@ namespace Nova
         }
 
         // Get localized string with fallback to DefaultLocale
-        public static string __(Dictionary<SystemLanguage, string> dict)
+        public static string __(IReadOnlyDictionary<SystemLanguage, string> dict)
         {
             if (dict.ContainsKey(CurrentLocale))
             {

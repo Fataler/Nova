@@ -19,11 +19,11 @@ namespace Nova
             public readonly DialogueDisplayData displayData;
             public readonly NodeHistoryEntry nodeHistoryEntry;
             public readonly int dialogueIndex;
-            public readonly Dictionary<string, VoiceEntry> voices;
+            public readonly IReadOnlyDictionary<string, VoiceEntry> voices;
             public int logEntryIndex;
 
             public LogParam(DialogueDisplayData displayData, NodeHistoryEntry nodeHistoryEntry, int dialogueIndex,
-                Dictionary<string, VoiceEntry> voices, int logEntryIndex)
+                IReadOnlyDictionary<string, VoiceEntry> voices, int logEntryIndex)
             {
                 this.displayData = displayData;
                 this.nodeHistoryEntry = nodeHistoryEntry;
@@ -69,6 +69,13 @@ namespace Nova
             gameState.AddRestorable(this);
 
             lastCheckpointLogParams = null;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            checkpointManager.Init();
         }
 
         protected override void OnDestroy()
@@ -210,7 +217,9 @@ namespace Nova
             }
 
             scrollRect.verticalNormalizedPosition = 0.0f;
+
             base.Show(onFinish);
+
             scrollRect.verticalNormalizedPosition = 0.0f;
             lastClickedLogIndex = -1;
         }

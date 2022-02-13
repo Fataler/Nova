@@ -9,20 +9,26 @@ namespace Nova
     [Serializable]
     public class NodeHistoryData
     {
-        public readonly List<string> nodeNames;
-        public readonly SortedDictionary<int, SortedDictionary<int, ulong>> interrupts;
+        public readonly IReadOnlyList<string> nodeNames;
+        public readonly IReadOnlyDictionary<int, IReadOnlyDictionary<int, ulong>> interrupts;
 
         public NodeHistoryData(NodeHistory nodeHistory)
         {
             nodeNames = nodeHistory.Select(x => x.Key).ToList();
-            interrupts = new SortedDictionary<int, SortedDictionary<int, ulong>>(nodeHistory.interrupts);
+            interrupts = nodeHistory.interrupts.ToDictionary(
+                pair => pair.Key,
+                pair => (IReadOnlyDictionary<int, ulong>)pair.Value.ToDictionary(
+                    pair2 => pair2.Key,
+                    pair2 => pair2.Value
+                )
+            );
         }
     }
 
     public class NodeHistory : CountedHashableList<string>
     {
         // Node history index -> dialogue index -> variables hash
-        public SortedDictionary<int, SortedDictionary<int, ulong>> interrupts =
+        public readonly SortedDictionary<int, SortedDictionary<int, ulong>> interrupts =
             new SortedDictionary<int, SortedDictionary<int, ulong>>();
 
         // Knuth's golden ratio multiplicative hashing

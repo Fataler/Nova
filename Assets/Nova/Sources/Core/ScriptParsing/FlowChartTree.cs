@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Nova
 {
@@ -47,7 +46,7 @@ namespace Nova
 
         private void CheckFreeze()
         {
-            Assert.IsFalse(isFrozen, "Nova: Cannot modify a flow chart tree when it is frozen.");
+            Utils.RuntimeAssert(!isFrozen, "Cannot modify a flow chart tree when it is frozen.");
         }
 
         /// <summary>
@@ -108,12 +107,12 @@ namespace Nova
         /// <summary>
         /// Returns names of all start nodes.
         /// </summary>
-        public List<string> GetAllStartNodeNames()
+        public IReadOnlyList<string> GetAllStartNodeNames()
         {
             return startNodes.Keys.ToList();
         }
 
-        public List<string> GetAllUnlockedStartNodeNames()
+        public IReadOnlyList<string> GetAllUnlockedStartNodeNames()
         {
             return unlockedStartNodes.Keys.ToList();
         }

@@ -96,9 +96,19 @@ namespace Nova
 
         public static void AddCheckpointPattern(string triggeringFuncName, string yieldingFuncName)
         {
-            PatternToActionGenerator[triggeringFuncName] = new ActionGenerators
+            string pattern = $@"(^|[\s\(:]){triggeringFuncName}(\(|\s*,)";
+            PatternToActionGenerator[pattern] = new ActionGenerators
             {
                 checkpoint = _ => $"{yieldingFuncName}()\n"
+            };
+        }
+
+        public static void AddCheckpointNextPattern(string triggeringFuncName, string yieldingFuncName)
+        {
+            string pattern = $@"(^|[\s\(:]){triggeringFuncName}(\(|\s*,)";
+            PatternToActionGenerator[pattern] = new ActionGenerators
+            {
+                unpreload = _ => $"{yieldingFuncName}()\n"
             };
         }
 
@@ -334,7 +344,7 @@ namespace Nova
             }
         }
 
-        public static List<DialogueEntry> ParseDialogueEntries(IReadOnlyList<ScriptLoader.Chunk> chunks,
+        public static IReadOnlyList<DialogueEntry> ParseDialogueEntries(IReadOnlyList<ScriptLoader.Chunk> chunks,
             IDictionary<string, string> hiddenCharacterNames)
         {
             var codes = new Dictionary<DialogueActionStage, string[]>();
@@ -420,8 +430,8 @@ namespace Nova
             return results;
         }
 
-        public static List<LocalizedDialogueEntry> ParseLocalizedDialogueEntries(
-            IReadOnlyList<ScriptLoader.Chunk> chunks)
+        public static IReadOnlyList<LocalizedDialogueEntry> ParseLocalizedDialogueEntries(
+            IEnumerable<ScriptLoader.Chunk> chunks)
         {
             var results = new List<LocalizedDialogueEntry>();
             foreach (var chunk in chunks)

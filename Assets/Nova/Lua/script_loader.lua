@@ -31,12 +31,10 @@ function label(name, display_name)
     end
 
     if __Nova.scriptLoader.stateLocale == Nova.I18n.DefaultLocale then
-        __Nova.scriptLoader:RegisterNewNode(name)
+        __Nova.scriptLoader:RegisterNewNode(name, display_name)
     else
-        __Nova.scriptLoader:BeginAddLocaleForNode(name)
+        __Nova.scriptLoader:AddLocalizedNode(name, display_name)
     end
-
-    Nova.I18nHelper.NodeNames:Set(name, __Nova.scriptLoader.stateLocale, display_name)
 end
 
 --- jump to the given destination
@@ -97,7 +95,7 @@ function branch(branches)
         if __Nova.scriptLoader.stateLocale == Nova.I18n.DefaultLocale then
             __Nova.scriptLoader:RegisterBranch(name, branch.dest, branch.text, image_info, mode, cond)
         else
-            __Nova.scriptLoader:AddLocaleForBranch(name, branch.dest, branch.text)
+            __Nova.scriptLoader:AddLocalizedBranch(name, branch.dest, branch.text)
         end
     end
     __Nova.scriptLoader:EndRegisterBranch()
@@ -150,4 +148,21 @@ function is_end(name)
         return
     end
     __Nova.scriptLoader:SetCurrentAsEnd(name)
+end
+
+local text_need_interpolate = false
+
+function get_text_need_interpolate()
+    return text_need_interpolate
+end
+
+function reset_text_need_interpolate()
+    text_need_interpolate = false
+end
+
+function interpolate_text(s)
+    return string.gsub(s, '{{([^}]+)}}', function(x)
+            text_need_interpolate = true
+            return _G[x]
+        end)
 end

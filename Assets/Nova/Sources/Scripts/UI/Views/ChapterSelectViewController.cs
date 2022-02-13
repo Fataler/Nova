@@ -18,8 +18,8 @@ namespace Nova
         private LogController logController;
         private NameSorter nameSorter;
 
-        private List<string> startNodeNames;
-        private List<string> unlockedStartNodeNames;
+        private IReadOnlyList<string> startNodeNames;
+        private IReadOnlyList<string> unlockedStartNodeNames;
 
         private Dictionary<string, GameObject> buttons;
 
@@ -48,6 +48,8 @@ namespace Nova
         {
             base.Start();
 
+            checkpointManager.Init();
+
             buttons = startNodeNames.Select(chapter =>
             {
                 var go = Instantiate(chapterButtonPrefab, chapterList.transform);
@@ -66,6 +68,7 @@ namespace Nova
             }
 
             UpdateAllButtons();
+
             base.Show(onFinish);
         }
 
@@ -104,7 +107,7 @@ namespace Nova
                 if (IsUnlocked(chapter.Key))
                 {
                     chapter.Value.GetComponent<Button>().enabled = true;
-                    chapter.Value.GetComponent<Text>().text = I18nHelper.NodeNames.Get(chapter.Key);
+                    chapter.Value.GetComponent<Text>().text = I18n.__(gameState.GetNode(chapter.Key).displayNames);
                 }
                 else
                 {
@@ -117,12 +120,13 @@ namespace Nova
         protected override void OnActivatedUpdate()
         {
             base.OnActivatedUpdate();
+
             if (Utils.GetKeyDownInEditor(KeyCode.LeftShift))
             {
                 foreach (var chapter in buttons)
                 {
                     chapter.Value.GetComponent<Button>().enabled = true;
-                    chapter.Value.GetComponent<Text>().text = I18nHelper.NodeNames.Get(chapter.Key);
+                    chapter.Value.GetComponent<Text>().text = I18n.__(gameState.GetNode(chapter.Key).displayNames);
                 }
             }
         }

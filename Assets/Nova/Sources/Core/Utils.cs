@@ -48,12 +48,25 @@ namespace Nova
             RenderTexture.active = old;
         }
 
+        public static void RuntimeAssert(bool condition, string msg)
+        {
+            if (!condition)
+            {
+                throw new AssertionException($"Nova: {msg}", null);
+            }
+        }
+
         public static void RuntimeAssert(this MonoBehaviour mb, bool condition, string msg)
         {
             if (!condition)
             {
                 throw new AssertionException($"Nova - {mb.name}: {msg}", null);
             }
+        }
+
+        public static int IndexOf<T>(this IReadOnlyList<T> list, T item)
+        {
+            return ((List<T>)list).IndexOf(item);
         }
 
         public static TValue Ensure<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key) where TValue : new()

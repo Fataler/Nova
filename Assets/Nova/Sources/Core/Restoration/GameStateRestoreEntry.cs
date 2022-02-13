@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine.Assertions;
 
 namespace Nova
 {
@@ -39,10 +38,10 @@ namespace Nova
     [Serializable]
     public class GameStateCheckpoint : GameStateRestoreEntry
     {
-        public readonly Dictionary<string, IRestoreData> restoreDatas;
+        public readonly IReadOnlyDictionary<string, IRestoreData> restoreDatas;
         public readonly Variables variables;
 
-        public GameStateCheckpoint(Dictionary<string, IRestoreData> restoreDatas, Variables variables,
+        public GameStateCheckpoint(IReadOnlyDictionary<string, IRestoreData> restoreDatas, Variables variables,
             int restrainCheckpointNum)
             : base(0, restrainCheckpointNum)
         {
@@ -58,8 +57,8 @@ namespace Nova
         public GameStateSimpleEntry(int stepNumFromLastCheckpoint, int restrainCheckpointNum)
             : base(stepNumFromLastCheckpoint, restrainCheckpointNum)
         {
-            Assert.IsTrue(stepNumFromLastCheckpoint > 0,
-                $"Nova: Invalid stepNumFromLastCheckpoint for GameStateSimpleEntry: {stepNumFromLastCheckpoint}");
+            Utils.RuntimeAssert(stepNumFromLastCheckpoint > 0,
+                $"Invalid stepNumFromLastCheckpoint for GameStateSimpleEntry: {stepNumFromLastCheckpoint}");
         }
     }
 }
